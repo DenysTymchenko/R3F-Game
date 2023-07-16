@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 import {
   BoxGeometry,
@@ -22,15 +23,42 @@ function BlockStart({ position = [0, 0, 0] }) {
       <mesh
         geometry={boxGeometry}
         material={floor1Material}
-        scale={[4, 0.2, 4]}
         //Placing floor at y = 0 vvv
         position-y={-0.1}
+        scale={[4, 0.2, 4]}
         receiveShadow
       >
       </mesh>
     </group>
   );
 }
+
+function BlockEnd({ position = [0, 0, 0] }) {
+  const flag = useGLTF('./flag.gltf');
+  console.log(flag);
+  flag.scene.children[0].children.forEach(mesh => {
+    mesh.castShadow = true;
+  });
+
+  return (
+    <group position={position}>
+      {/*Flag*/}
+      <RigidBody type='fixed'>
+        <primitive object={flag.scene} castShadow />
+      </RigidBody>
+
+      {/*Floor*/}
+      <mesh
+        geometry={boxGeometry}
+        material={floor1Material}
+        scale={[4, 0.2, 4]}
+        receiveShadow
+      >
+      </mesh>
+    </group>
+  );
+}
+
 
 function BlockSpinner({ position = [0, 0, 0] }) {
   const obstacle = useRef();
@@ -150,10 +178,11 @@ function BlockAxe({ position = [0, 0, 0] }) {
 export default function Level() {
   return (
     <>
-      <BlockStart position={[0, 0, 12]} />
-      <BlockSpinner position={[0, 0, 8]} />
-      <BlockLimbo position={[0, 0, 4]} />
-      <BlockAxe position={[0, 0, 0]} />
+      <BlockStart position={[0, 0, 16]} />
+      <BlockSpinner position={[0, 0, 12]} />
+      <BlockLimbo position={[0, 0, 8]} />
+      <BlockAxe position={[0, 0, 4]} />
+      <BlockEnd position={[0, 0, 0]} />
     </>
   )
 }
