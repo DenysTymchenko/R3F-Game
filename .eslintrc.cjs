@@ -14,11 +14,12 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
-    ],
-    'react/no-unknown-property': [
-      'off',
-      { 'ignore': ['JSX'] }
+      {
+        allowConstantExport: true,
+        "react/no-unescaped-entities": "off",
+        "react/display-name": "off",
+        "react/prop-types": "off",
+      },
     ],
   },
 }
