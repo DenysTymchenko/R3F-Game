@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
@@ -35,7 +35,6 @@ function BlockStart({ position = [0, 0, 0] }) {
 
 function BlockEnd({ position = [0, 0, 0] }) {
   const flag = useGLTF('./flag.gltf');
-  console.log(flag);
   flag.scene.children[0].children.forEach(mesh => {
     mesh.castShadow = true;
   });
@@ -175,14 +174,24 @@ function BlockAxe({ position = [0, 0, 0] }) {
   )
 }
 
-export default function Level() {
+export default function Level({
+  obstaclesBlocks = [BlockSpinner, BlockLimbo, BlockAxe],
+  obstaclesBlocksCount = 5,
+}) {
+  const blocks = useMemo(() => {
+    const blocks = [];
+    for (let i = 0; i < obstaclesBlocksCount; i++) {
+      const obstaclesBlock = obstaclesBlocks[Math.floor(Math.random() * obstaclesBlocks.length)]
+      blocks.push(obstaclesBlock);
+    }
+    return blocks;
+  }, [obstaclesBlocks, obstaclesBlocksCount,]);
+
   return (
     <>
-      <BlockStart position={[0, 0, 16]} />
-      <BlockSpinner position={[0, 0, 12]} />
-      <BlockLimbo position={[0, 0, 8]} />
-      <BlockAxe position={[0, 0, 4]} />
-      <BlockEnd position={[0, 0, 0]} />
+      <BlockStart />
+      {blocks.map((Block, index) => <Block key={index} position={[0, 0, - (index + 1) * 4]} />)}
+      <BlockEnd position={[0, 0, - (obstaclesBlocksCount + 1) * 4]} />
     </>
   )
 }
