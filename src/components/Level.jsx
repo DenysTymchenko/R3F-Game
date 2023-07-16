@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
-import { RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import {
   BoxGeometry,
   Euler,
@@ -23,8 +23,7 @@ function BlockStart({ position = [0, 0, 0] }) {
       <mesh
         geometry={boxGeometry}
         material={floor1Material}
-        //Placing floor at y = 0 vvv
-        position-y={-0.1}
+        position-y={-0.1} // Placing floor at y = 0
         scale={[4, 0.2, 4]}
         receiveShadow
       >
@@ -174,6 +173,54 @@ function BlockAxe({ position = [0, 0, 0] }) {
   )
 }
 
+function Bounds({ length }) {
+  return (
+    <group>
+      <RigidBody type='fixed'>
+        {/* Right wall */}
+        <mesh
+          geometry={boxGeometry}
+          material={wallMaterial}
+          position={[2.15, 0.75, - (length * 2) + 2]}
+          scale={[0.3, 1.5, length * 4]} // Multiplying by 4, because every block is 4 units in depth
+          castShadow
+        />
+        {/* Left wall */}
+        <mesh
+          geometry={boxGeometry}
+          material={wallMaterial}
+          position={[-2.15, 0.75, - (length * 2) + 2]}
+          scale={[0.3, 1.5, length * 4]} // Multiplying by 4, because every block is 4 units in depth
+          castShadow
+        />
+        {/* Start wall */}
+        <mesh
+          geometry={boxGeometry}
+          material={wallMaterial}
+          position={[0, 0.75, 2]}
+          scale={[4, 1.5, 0.3]} // Multiplying by 4, because every block is 4 units in depth
+          receiveShadow
+        />
+        {/* End wall */}
+        <mesh
+          geometry={boxGeometry}
+          material={wallMaterial}
+          position={[0, 0.75, - (length * 4) + 2]}
+          scale={[4, 1.5, 0.3]} // Multiplying by 4, because every block is 4 units in depth
+          receiveShadow
+        />
+        {/* Floor */}
+        <CuboidCollider
+          args={[2, 0.1, length * 2]}
+          position={[0, -0.1, - (length * 2) + 2]}
+          restitution={0.2}
+          friction={1}
+        />
+      </RigidBody>
+    </group>
+  )
+}
+
 export default function Level({
   obstaclesBlocks = [BlockSpinner, BlockLimbo, BlockAxe],
   obstaclesBlocksCount = 5,
@@ -190,8 +237,9 @@ export default function Level({
   return (
     <>
       <BlockStart />
-      {blocks.map((Block, index) => <Block key={index} position={[0, 0, - (index + 1) * 4]} />)}
-      <BlockEnd position={[0, 0, - (obstaclesBlocksCount + 1) * 4]} />
+      {blocks.map((Block, index) => <Block key={index} position={[0, 0, - (index + 1) * 4]} />)} {/* Multiplying by 4, because every block is 4 units in depth */}
+      <BlockEnd position={[0, 0, - (obstaclesBlocksCount + 1) * 4]} /> {/* Multiplying by 4, because every block is 4 units in depth */}
+      <Bounds length={obstaclesBlocksCount + 2} /> {/* 2 represents BlockStart and BlockEnd */}
     </>
   )
 }
