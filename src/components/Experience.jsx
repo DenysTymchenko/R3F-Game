@@ -9,7 +9,6 @@ export default function Experince() {
     <>
       <Physics>
         <Lights />
-        <OrbitControls />
         <Level />
         <Player />
       </Physics>
