@@ -21,11 +21,11 @@ export default function Lights() {
         intensity={1.5}
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
-        shadow-camera-far={10}
-        shadow-camera-top={10}
-        shadow-camera-right={10}
-        shadow-camera-bottom={-10}
-        shadow-camera-left={-10}
+        shadow-camera-far={9}
+        shadow-camera-top={3}
+        shadow-camera-right={9}
+        shadow-camera-bottom={-2}
+        shadow-camera-left={-3}
       >
       </directionalLight>
     </>

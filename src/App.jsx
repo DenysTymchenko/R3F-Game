@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { KeyboardControls } from '@react-three/drei';
 import Experince from './components/Experience'
+import Interface from './components/Interface';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Canvas shadows>
         <Experince />
       </Canvas>
+      <Interface />
     </KeyboardControls>
   )
 }
