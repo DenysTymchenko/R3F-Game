@@ -8,6 +8,7 @@ import {
   MeshStandardMaterial,
   Quaternion
 } from 'three';
+import useGame from '../store/useGame';
 
 const boxGeometry = new BoxGeometry(1, 1, 1);
 
@@ -193,14 +194,6 @@ function Bounds({ length }) {
           scale={[0.3, 1.5, length * 4]} // Multiplying by 4, because every block is 4 units in depth
           castShadow
         />
-        {/* Start wall */}
-        {/*<mesh
-          geometry={boxGeometry}
-          material={wallMaterial}
-          position={[0, 0.75, 2]}
-          scale={[4, 1.5, 0.3]} // Multiplying by 4, because every block is 4 units in depth
-          receiveShadow
-        />*/}
         {/* End wall */}
         <mesh
           geometry={boxGeometry}
@@ -223,23 +216,25 @@ function Bounds({ length }) {
 
 export default function Level({
   obstaclesBlocks = [BlockSpinner, BlockLimbo, BlockAxe],
-  obstaclesBlocksCount = 5,
+  obstaclesCount,
 }) {
+  const obstaclesSeed = useGame((state) => state.obstaclesSeed);
+  
   const blocks = useMemo(() => {
     const blocks = [];
-    for (let i = 0; i < obstaclesBlocksCount; i++) {
+    for (let i = 0; i < obstaclesCount; i++) {
       const obstaclesBlock = obstaclesBlocks[Math.floor(Math.random() * obstaclesBlocks.length)]
       blocks.push(obstaclesBlock);
     }
     return blocks;
-  }, [obstaclesBlocks, obstaclesBlocksCount,]);
+  }, [obstaclesBlocks, obstaclesCount, obstaclesSeed]);
 
   return (
     <>
       <BlockStart />
       {blocks.map((Block, index) => <Block key={index} position={[0, 0, - (index + 1) * 4]} />)} {/* Multiplying by 4, because every block is 4 units in depth */}
-      <BlockEnd position={[0, 0, - (obstaclesBlocksCount + 1) * 4]} /> {/* Multiplying by 4, because every block is 4 units in depth */}
-      <Bounds length={obstaclesBlocksCount + 2} /> {/* 2 represents BlockStart and BlockEnd */}
+      <BlockEnd position={[0, 0, - (obstaclesCount + 1) * 4]} /> {/* Multiplying by 4, because every block is 4 units in depth */}
+      <Bounds length={obstaclesCount + 2} /> {/* 2 represents BlockStart and BlockEnd */}
     </>
   )
 }

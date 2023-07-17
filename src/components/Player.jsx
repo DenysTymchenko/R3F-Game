@@ -3,16 +3,30 @@ import { RigidBody, useRapier } from '@react-three/rapier';
 import { useKeyboardControls } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
 import { Vector3 } from 'three';
+import useGame from '../store/useGame';
 
 export default function Player() {
+  const { obstaclesCount, start, end, restart } = useGame((state) => state);
   const ball = useRef();
 
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
   useEffect(() => {
+    useGame.subscribe(
+      (state) => state.phase,
+      (value) => {
+        if(value === 'ready') {
+          // Respawning the ball at the BlockStart
+          ball.current.setTranslation({x: 0, y: 1, z: 0});
+          // Making the ball stop
+          ball.current.setLinvel({x: 0, y: 1, z: 0});
+          ball.current.setAngvel({x: 0, y: 1, z: 0});
+        }
+      }
+    )
     subscribeKeys(
       // Selector
-      (state) => state.jump,
+      (keys) => keys.jump,
       // Instructions
       (jump) => {
         if (jump) {
@@ -28,7 +42,9 @@ export default function Player() {
           }
         }
       },
-    )
+    );
+
+    subscribeKeys(() => start());
   }, [])
 
   const [smoothedCameraPosition] = useState(() => new Vector3(10, 10, 10));
@@ -79,6 +95,10 @@ export default function Player() {
 
     state.camera.position.copy(smoothedCameraPosition);
     state.camera.lookAt(smoothedCameraTarget);
+
+    // Changing phase
+    if (ballPosition.z < - (obstaclesCount * 4 + 2)) end();
+    if (ballPosition.y < -4) restart();
   })
 
   return (
