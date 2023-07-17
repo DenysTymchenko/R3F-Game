@@ -41,7 +41,7 @@ function BlockEnd({ position = [0, 0, 0] }) {
   return (
     <group position={position}>
       {/*Flag*/}
-      <RigidBody type='fixed'>
+      <RigidBody type='fixed' colliders='hull'>
         <primitive object={flag.scene} castShadow />
       </RigidBody>
 
@@ -176,7 +176,7 @@ function BlockAxe({ position = [0, 0, 0] }) {
 function Bounds({ length }) {
   return (
     <group>
-      <RigidBody type='fixed'>
+      <RigidBody type='fixed' restitution={0.2} friction={0}>
         {/* Right wall */}
         <mesh
           geometry={boxGeometry}
@@ -194,13 +194,13 @@ function Bounds({ length }) {
           castShadow
         />
         {/* Start wall */}
-        <mesh
+        {/*<mesh
           geometry={boxGeometry}
           material={wallMaterial}
           position={[0, 0.75, 2]}
           scale={[4, 1.5, 0.3]} // Multiplying by 4, because every block is 4 units in depth
           receiveShadow
-        />
+        />*/}
         {/* End wall */}
         <mesh
           geometry={boxGeometry}
