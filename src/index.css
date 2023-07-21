@@ -13,32 +13,32 @@ body {
   background: ivory;
 }
 
+
+/*Interface*/
+
 .interface {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*align-items: center;*/
   font-family: 'Bebas Neue', sans-serif;
   pointer-events: none;
+  padding-top: 40px;
 }
 
-.interface .time {
-  position: absolute;
-  top: 10%;
-  width: 100%;
+.interface .timer {
   font-size: 3rem;
   color: white;
   background-color: #00000033;
-  ;
   text-align: center;
 }
 
-.interface .restart {
-  position: absolute;
-  top: 40%;
-  left: 0;
-  width: 100%;
+.interface .restart-btn {
   font-size: 5rem;
   color: #ffffff;
   background: #00000033;
@@ -48,14 +48,10 @@ body {
   cursor: pointer;
 }
 
-/**
- * Controls
- */
+/*Controls*/
+
 .controls {
-  position: absolute;
-  bottom: 10%;
-  left: 0;
-  width: 100%;
+  padding-bottom: 75px;
 }
 
 .controls .wrapper {
@@ -71,7 +67,7 @@ body {
   background: #ffffff44;
 }
 
-.controls .key.large {
+.controls .key.space {
   width: 144px;
 }
 

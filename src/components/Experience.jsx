@@ -1,8 +1,7 @@
-import { OrbitControls } from '@react-three/drei'
+import { Physics } from '@react-three/rapier'
 import Lights from './Lights'
 import Level from './Level'
-import { Physics } from '@react-three/rapier'
-import Player from './Player'
+import Ball from './Ball'
 import useGame from '../store/useGame'
 
 export default function Experince() {
@@ -13,7 +12,7 @@ export default function Experince() {
       <Physics>
         <Lights />
         <Level obstaclesCount={obstaclesCount} />
-        <Player />
+        <Ball />
       </Physics>
     </>
   )
