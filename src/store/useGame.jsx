@@ -3,8 +3,6 @@ import { subscribeWithSelector } from 'zustand/middleware'
 
 export default create(subscribeWithSelector((set) => {
   return {
-    obstaclesCount: 35,
-    obstaclesSeed: 0,
     phase: 'ready',
     startTime: 0,
     endTime: 0,
@@ -26,10 +24,7 @@ export default create(subscribeWithSelector((set) => {
     restart() {
       set((state) => {
         if (state.phase !== 'restart') {
-          return {
-            obstaclesSeed: Math.random(),
-            phase: 'ready'
-          }
+          return { phase: 'ready' }
         }
         else {
           return {}
