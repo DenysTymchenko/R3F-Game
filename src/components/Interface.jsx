@@ -6,7 +6,7 @@ import useGame from '../store/useGame';
 import useTimer from '../hooks/useTimer';
 
 export default function Interface() {
-  const { phase, restart } = useGame((state) => state);
+  const { phase, restart, bestTime } = useGame((state) => state);
   const controls = useKeyboardControls((state) => state);
   const timer = useTimer();
 
@@ -15,7 +15,7 @@ export default function Interface() {
       <div className='top-part'>
         <div className='time'>
           <p className='timer'>Current: {timer}</p>
-          <p className='best-time'>Best: null</p>
+          <p className='best-time'>Best: {bestTime ? bestTime : '-'}</p>
         </div>
         <p className='restart-btn' onClick={restart}>Restart</p>
       </div>

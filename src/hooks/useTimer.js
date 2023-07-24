@@ -15,6 +15,7 @@ export default function useTimer() {
         elapsedTime = Date.now() - state.startTime;
       } else if (state.phase === 'ended') {
         elapsedTime = state.endTime - state.startTime;
+        handleUpdateBestTime(elapsedTime, state)
       }
 
       elapsedTime /= 1000;
@@ -24,4 +25,14 @@ export default function useTimer() {
   }, []);
 
   return timer;
+}
+
+function handleUpdateBestTime(elapsedTime, state) {
+  elapsedTime /= 1000;
+  elapsedTime = elapsedTime.toFixed(2);
+  
+  if(!state.bestTime || elapsedTime < state.bestTime) {
+    console.log('check');
+    state.setNewBestTime(elapsedTime);
+  }
 }

@@ -43,7 +43,7 @@ export default function useMovement(ball) {
     handleMovement(ball, delta, getKeys);
     cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget)
 
-    checkPhaseChange(ball.current.translation(), (-levelObstacles.length * 4) - 4, end, restart);
+    checkPhaseChange(ball.current.translation(), -(levelObstacles.length * 4 + 2), end, restart);
   });
 }
 

@@ -6,6 +6,7 @@ export default create(subscribeWithSelector((set) => {
     phase: 'ready',
     startTime: 0,
     endTime: 0,
+    bestTime: localStorage.getItem('bestTime'),
 
     start() {
       set((state) => {
@@ -45,5 +46,15 @@ export default create(subscribeWithSelector((set) => {
         }
       });
     },
+
+    setNewBestTime(newBest) {
+      localStorage.setItem('bestTime', newBest);
+      
+      set(() => {
+        return {
+          bestTime: newBest
+        }
+      })
+    }
   };
 }));
