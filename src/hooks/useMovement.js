@@ -4,6 +4,7 @@ import { useKeyboardControls } from '@react-three/drei';
 import { useRapier } from '@react-three/rapier';
 import { Vector3 } from 'three';
 import useGame from '../store/useGame';
+import levelObstacles from '../utils/LevelObstacles';
 
 export default function useMovement(ball) {
   const { obstaclesCount, start, end, restart } = useGame((state) => state);
@@ -42,7 +43,7 @@ export default function useMovement(ball) {
     handleMovement(ball, delta, getKeys);
     cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget)
 
-    checkPhaseChange(ball.current.translation(), obstaclesCount, end, restart);
+    checkPhaseChange(ball.current.translation(), (-levelObstacles.length * 4) - 4, end, restart);
   });
 }
 
@@ -109,7 +110,7 @@ function cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCa
   state.camera.lookAt(smoothedCameraTarget);
 }
 
-function checkPhaseChange(ballPosition, obstaclesCount, end, restart) {
-  if (ballPosition.z < -(obstaclesCount * 4 + 2)) end(); // triggered on finish
+function checkPhaseChange(ballPosition, finishPosition, end, restart) {
+  if (ballPosition.z < finishPosition) end(); // triggered on finish
   if (ballPosition.y < -4) restart(); // triggered when ball fall out the bounds
 }

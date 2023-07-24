@@ -5,10 +5,7 @@ import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 import { Euler, Quaternion } from 'three';
 
-export default function BlockRotating({
-  position = [0, 0, 0],
-  direction = 'left',
-}) {
+export default function BlockRotating({ position = [0, 0, 0], direction = 'left' }) {
   const obstacle = useRef();
 
   useFrame((state) => {

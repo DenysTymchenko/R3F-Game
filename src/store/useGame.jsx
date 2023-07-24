@@ -3,7 +3,7 @@ import { subscribeWithSelector } from 'zustand/middleware'
 
 export default create(subscribeWithSelector((set) => {
   return {
-    obstaclesCount: 5,
+    obstaclesCount: 35,
     obstaclesSeed: 0,
     phase: 'ready',
     startTime: 0,

@@ -5,11 +5,12 @@ import { Euler, Quaternion } from 'three';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 
-export default function BlockSpinningWall({ position = [0, 0, 0] }) {
+export default function BlockSpinningWall({ position = [0, 0, 0], direction = 'left' }) {
   const obstacle = useRef();
 
   useFrame((state) => {
-    const time = state.clock.getElapsedTime();
+    let time = state.clock.getElapsedTime();
+    if (direction === 'right') time *= -1;
 
     const rotation = new Quaternion();
     rotation.setFromEuler(new Euler(0, time * 4.5, 0));
@@ -17,7 +18,7 @@ export default function BlockSpinningWall({ position = [0, 0, 0] }) {
     obstacle.current.setNextKinematicRotation(rotation);
   });
 
-  return(
+  return (
     <group position={position}>
       {/*Floor*/}
       <mesh
