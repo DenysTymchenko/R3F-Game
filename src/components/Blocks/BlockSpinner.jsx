@@ -5,18 +5,18 @@ import { Euler, Quaternion } from 'three';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 
-export default function BlockSpinner({ position = [0, 0, 0] }) {
+export default function BlockSpinner({
+  position = [0, 0, 0],
+  direction = 'left',
+}) {
   const obstacle = useRef();
-  // Setting speed value from 1 to 3.
-  // Then, depending on Math.random result, multiplying speed value to 1 or -1.
-  // By doing this multiplying we randobly set spinning direction (from right to left or from left to right).
-  const [speed] = useState(() => Math.floor(Math.random() * 3 + 1) * (Math.random() < 0.5 ? -1 : 1));
 
   useFrame((state) => {
-    const time = state.clock.getElapsedTime();
+    let time = state.clock.getElapsedTime();
+    if (direction === 'right') time *= -1;
 
     const rotation = new Quaternion();
-    rotation.setFromEuler(new Euler(0, time * speed, 0));
+    rotation.setFromEuler(new Euler(0, time * 4, 0));
 
     obstacle.current.setNextKinematicRotation(rotation);
   })

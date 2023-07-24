@@ -12,7 +12,7 @@ export default function BlockSpinningWall({ position = [0, 0, 0] }) {
     const time = state.clock.getElapsedTime();
 
     const rotation = new Quaternion();
-    rotation.setFromEuler(new Euler(0, time * 3, 0));
+    rotation.setFromEuler(new Euler(0, time * 4.5, 0));
 
     obstacle.current.setNextKinematicRotation(rotation);
   });

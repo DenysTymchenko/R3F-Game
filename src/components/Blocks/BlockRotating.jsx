@@ -5,19 +5,19 @@ import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 import { Euler, Quaternion } from 'three';
 
-export default function BlockRotating({ position = [0, 0, 0] }) {
+export default function BlockRotating({
+  position = [0, 0, 0],
+  direction = 'left',
+}) {
   const obstacle = useRef();
-  // timeOffset will help us to make different BlockLimbo go up and down differently, so they don't do it be simultaneously.
-  const [timeOffset] = useState(() => Math.random() * Math.PI * 2);
 
   useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    const y = Math.sin(time + timeOffset) + 2.5; // because of + 1.15, obstacle will never go under the floor
+    let time = state.clock.getElapsedTime();
+    if (direction === 'right') time *= -1;
 
     const rotation = new Quaternion();
     rotation.setFromEuler(new Euler(0, 0, time * 4));
 
-    //obstacle.current.setNextKinematicTranslation({ x: position[0], y, z: position[2] });
     obstacle.current.setNextKinematicRotation(rotation);
   })
 

@@ -11,7 +11,7 @@ export default function BlockLeftRightWall({ position = [0, 0, 0] }) {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    const x = Math.sin(time + timeOffset) * 1.25 // multiplying by 1.25 makes obstacle go from one edge to enother perfectly
+    const x = Math.sin(5 * time + timeOffset) * 1.25 // multiplying by 1.25 makes obstacle go from one edge to enother perfectly
 
     obstacle.current.setNextKinematicTranslation({ x, y: position[1] + 0.75, z: position[2] });
   })

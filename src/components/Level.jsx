@@ -30,8 +30,8 @@ export default function Level({
   return (
     <>
       <BlockStart />
-      {/*<BlockSpinner position={[0, 0, -4]} />
-      <BlockLimbo position={[0, 0, -20]} />
+      {/*<BlockSpinner position={[0, 0, -4]} direction='right' />*/}
+      {/*<BlockLimbo position={[0, 0, -20]} />
       <BlockLeftRightWall position={[0, 0, -12]} />
       <BlockSpinningWall position={[0, 0, -16]} />
       <BlockBumps position={[0, 0, -8]} />

@@ -12,7 +12,7 @@ export default function BlockLimbo({ position = [0, 0, 0] }) {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    const y = Math.sin(time + timeOffset) + 1.15; // because of + 1.15, obstacle will never go under the floor
+    const y = Math.sin(2.5 * time + timeOffset) + 1.15; // because of + 1.15, obstacle will never go under the floor
 
     obstacle.current.setNextKinematicTranslation({ x: position[0], y, z: position[2] });
   })
