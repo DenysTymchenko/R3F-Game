@@ -7,7 +7,7 @@ import useGame from '../store/useGame';
 import levelObstacles from '../utils/LevelObstacles';
 
 export default function useMovement(ball) {
-  const { obstaclesCount, start, end, restart } = useGame((state) => state);
+  const { start, end, restart } = useGame((state) => state);
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
 
@@ -18,8 +18,8 @@ export default function useMovement(ball) {
         if (value === 'ready') {
           ball.current.setTranslation({ x: 0, y: 1, z: 0 }); // Respawning the ball at the BlockStart
           // Making the ball stop
-          ball.current.setLinvel({ x: 0, y: 1, z: 0 });
-          ball.current.setAngvel({ x: 0, y: 1, z: 0 });
+          ball.current.setLinvel({ x: 0, y: 0, z: 0 });
+          ball.current.setAngvel({ x: 0, y: 0, z: 0 });
         }
       }
     );
