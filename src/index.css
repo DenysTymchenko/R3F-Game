@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-body {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -15,7 +15,6 @@ body {
 
 
 /*Interface*/
-
 .interface {
   position: fixed;
   top: 0;
@@ -25,31 +24,41 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /*align-items: center;*/
   font-family: 'Bebas Neue', sans-serif;
   pointer-events: none;
-  padding-top: 40px;
 }
 
-.interface .timer {
-  font-size: 3rem;
+/*Top part*/
+.interface .top-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
   color: white;
-  background-color: #00000033;
-  text-align: center;
+  background-color: #0000007a;
+  padding: 10px;
+}
+
+.interface .top-part .time {
+  display: flex;
+  gap: 20px;
 }
 
 .interface .restart-btn {
-  font-size: 5rem;
-  color: #ffffff;
-  background: #00000033;
-  text-align: center;
-  padding-top: 10px;
   pointer-events: auto;
   cursor: pointer;
 }
 
-/*Controls*/
+/*Results*/
+.result {
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+  background-color: #0000007a;
+  padding: 5px;
+}
 
+/*Controls*/
 .controls {
   padding-bottom: 75px;
 }
@@ -64,7 +73,7 @@ body {
   height: 40px;
   margin: 4px;
   border: 2px solid #ffffff;
-  background: #ffffff44;
+  background: #82828244;
 }
 
 .controls .key.space {
@@ -72,5 +81,5 @@ body {
 }
 
 .controls .key.active {
-  background: #ffffff99;
+  background: #0000007a;
 }

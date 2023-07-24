@@ -12,8 +12,14 @@ export default function Interface() {
 
   return (
     <div className='interface'>
-      <div className='timer'>{timer}</div>
-      {phase === 'ended' && <div className='restart-btn' onClick={restart}>Restart</div>}
+      <div className='top-part'>
+        <div className='time'>
+          <p className='timer'>Current: {timer}</p>
+          <p className='best-time'>Best: null</p>
+        </div>
+        <p className='restart-btn' onClick={restart}>Restart</p>
+      </div>
+      {phase === 'ended' && <p className='result'>Result: {timer}</p>}
       <div className="controls">
         <div className='wrapper'>
           <div className={classNames('key', controls.forward && 'active')}></div>
