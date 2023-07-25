@@ -56,7 +56,7 @@ function handleJump(ball, rapier, world) {
   const ray = new rapier.Ray(origin, direction);
   const hit = world.castRay(ray, 10, true);
 
-  if (hit.toi <= 0.1) {
+  if (hit?.toi <= 0.1) {
     ball.current.applyImpulse({ x: 0, y: 0.15, z: 0 });
   }
 }
