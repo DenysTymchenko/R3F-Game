@@ -1,9 +1,22 @@
+import { Float, Text } from '@react-three/drei';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor1Material } from '../../utils/Materials';
 
 export default function BlockStart({ position = [0, 0, 0] }) {
   return (
     <group position={position}>
+      <Float>
+        <Text
+          position={[1, 0.75, 0]}
+          scale={0.5}
+          maxWidth={0.25}
+          lineHeight={0.85}
+          textAlign='center'
+        >
+          Obstacle Course
+          <meshBasicMaterial toneMapped={false} />
+        </Text>
+      </Float>
       {/*Floor*/}
       <mesh
         geometry={boxGeometry}
