@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware'
-import { finishSound, startSound } from '../utils/Audio';
+import { bgMusic, finishSound, startSound } from '../utils/Audio';
 
 export default create(subscribeWithSelector((set) => {
   return {
@@ -14,6 +14,11 @@ export default create(subscribeWithSelector((set) => {
         if (state.phase === 'ready') {
           startSound.currentTime = 0;
           startSound.play();
+
+          setTimeout(() => {
+            bgMusic.loop = true;
+            bgMusic.play();
+          }, 1000)
 
           return {
             phase: 'playing',
