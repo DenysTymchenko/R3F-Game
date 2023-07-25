@@ -74,8 +74,6 @@
   margin: 4px;
   border: 2px solid #ffffff;
   background: #82828244;
-  pointer-events: auto;
-  cursor: pointer;
 }
 
 .controls .key.space {
@@ -98,6 +96,8 @@
   .controls .key {
     width: 65px;
     height: 65px;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   .controls .key.space {

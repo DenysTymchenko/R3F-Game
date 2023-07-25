@@ -7,7 +7,7 @@ import useGame from '../store/useGame';
 import levelObstacles from '../utils/LevelObstacles';
 
 export default function useMovement(ball) {
-  const { start, end, restart } = useGame((state) => state);
+  const { phase, start, end, restart } = useGame((state) => state);
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
 
@@ -17,33 +17,20 @@ export default function useMovement(ball) {
       (value) => {
         if (value === 'ready') {
           ball.current.setTranslation({ x: 0, y: 1, z: 0 }); // Respawning the ball at the BlockStart
-          // Making the ball stop
-          ball.current.setLinvel({ x: 0, y: 0, z: 0 });
+          ball.current.setLinvel({ x: 0, y: 0, z: 0 }); // Making the ball stop
           ball.current.setAngvel({ x: 0, y: 0, z: 0 });
         }
       }
     );
-
-    //subscribeKeys(
-    //  // Selector
-    //  (keys) => keys.jump,
-    //  // Instructions
-    //  (jump) => {
-    //    console.log('check');
-    //    if (jump) handleJump(ball, rapier, world);
-    //  },
-    //);
-
-    subscribeKeys(() => start());
   }, []);
 
   const [smoothedCameraPosition] = useState(() => new Vector3(10, 10, 10));
   const [smoothedCameraTarget] = useState(() => new Vector3());
 
   useFrame((state, delta) => {
-    handleMovement(ball, delta, getKeys, rapier, world);
-    cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget)
-
+    const keys = getKeys();
+    handleMovement(ball, delta, phase, start, keys, rapier, world);
+    cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget);
     checkPhaseChange(ball.current.translation(), -(levelObstacles.length * 4 + 2), end, restart);
   });
 }
@@ -52,7 +39,6 @@ function handleJump(ball, rapier, world) {
   const origin = ball.current.translation();
   origin.y -= 0.31;
   const direction = { x: 0, y: -1, z: 0 };
-
   const ray = new rapier.Ray(origin, direction);
   const hit = world.castRay(ray, 10, true);
 
@@ -61,12 +47,9 @@ function handleJump(ball, rapier, world) {
   }
 }
 
-function handleMovement(ball, delta, getKeys, rapier, world) {
-  const keys = getKeys();
-
+function handleMovement(ball, delta, phase, start, keys, rapier, world) {
   const impulse = { x: 0, y: 0, z: 0 };
   const torque = { x: 0, y: 0, z: 0 };
-
   const impulseStrength = 0.6 * delta;
   const torqueStrength = 0.2 * delta;
 
@@ -86,7 +69,13 @@ function handleMovement(ball, delta, getKeys, rapier, world) {
     impulse.x -= impulseStrength;
     torque.z += torqueStrength;
   }
-  if(keys.jump) handleJump(ball, rapier, world);
+  if (keys.jump) {
+    handleJump(ball, rapier, world);
+  }
+
+  if (phase === 'ready' && (keys.forward || keys.rightward || keys.backward || keys.leftward || keys.jump)) {
+    start();
+  }
 
   ball.current.applyImpulse(impulse);
   ball.current.applyTorqueImpulse(torque);
@@ -94,17 +83,9 @@ function handleMovement(ball, delta, getKeys, rapier, world) {
 
 function cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget) {
   const ballPosition = ball.current.translation();
+  const cameraPosition = new Vector3(ballPosition.x, ballPosition.y + 1.25, ballPosition.z + 2.25);
+  const cameraTarget = new Vector3(ballPosition.x, ballPosition.y + 0.25, ballPosition.z);
 
-  const cameraPosition = new Vector3();
-  cameraPosition.copy(ballPosition);
-  cameraPosition.z += 2.25;
-  cameraPosition.y += 1.25;
-
-  const cameraTarget = new Vector3();
-  cameraTarget.copy(ballPosition);
-  cameraTarget.y += 0.25;
-
-  // Making ball trailing much smoother. It can be perfectly seen when the ball is moving really fast
   smoothedCameraPosition.lerp(cameraPosition, delta * 5);
   smoothedCameraTarget.lerp(cameraTarget, delta * 5);
 
@@ -114,5 +95,5 @@ function cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCa
 
 function checkPhaseChange(ballPosition, finishPosition, end, restart) {
   if (ballPosition.z < finishPosition) end(); // triggered on finish
-  if (ballPosition.y < -4) restart(); // triggered when ball fall out the bounds
+  if (ballPosition.y < -4) restart(); // triggered when ball falls out of bounds
 }
