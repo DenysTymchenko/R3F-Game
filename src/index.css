@@ -60,7 +60,7 @@
 
 /*Controls*/
 .controls {
-  padding-bottom: 75px;
+  padding-bottom: 35px;
 }
 
 .controls .wrapper {
@@ -74,6 +74,8 @@
   margin: 4px;
   border: 2px solid #ffffff;
   background: #82828244;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .controls .key.space {
@@ -82,4 +84,41 @@
 
 .controls .key.active {
   background: #0000007a;
+}
+
+
+@media screen and (max-width: 768px) {
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding-bottom: 10px;
+  }
+  
+  .controls .key {
+    width: 65px;
+    height: 65px;
+  }
+
+  .controls .key.space {
+    width: 288px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .controls .key {
+    width: 50px;
+    height: 50px;
+  }
+
+  .controls .key.space {
+    width: 200px;
+  }
+}
+
+
+@media screen and (max-width: 380px) {
+  .controls .key.space {
+    width: 130px;
+  }
 }

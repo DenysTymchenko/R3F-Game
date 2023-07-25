@@ -24,14 +24,15 @@ export default function useMovement(ball) {
       }
     );
 
-    subscribeKeys(
-      // Selector
-      (keys) => keys.jump,
-      // Instructions
-      (jump) => {
-        if (jump) handleJump(ball, rapier, world);
-      },
-    );
+    //subscribeKeys(
+    //  // Selector
+    //  (keys) => keys.jump,
+    //  // Instructions
+    //  (jump) => {
+    //    console.log('check');
+    //    if (jump) handleJump(ball, rapier, world);
+    //  },
+    //);
 
     subscribeKeys(() => start());
   }, []);
@@ -40,7 +41,7 @@ export default function useMovement(ball) {
   const [smoothedCameraTarget] = useState(() => new Vector3());
 
   useFrame((state, delta) => {
-    handleMovement(ball, delta, getKeys);
+    handleMovement(ball, delta, getKeys, rapier, world);
     cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget)
 
     checkPhaseChange(ball.current.translation(), -(levelObstacles.length * 4 + 2), end, restart);
@@ -56,11 +57,11 @@ function handleJump(ball, rapier, world) {
   const hit = world.castRay(ray, 10, true);
 
   if (hit.toi <= 0.1) {
-    ball.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
+    ball.current.applyImpulse({ x: 0, y: 0.15, z: 0 });
   }
 }
 
-function handleMovement(ball, delta, getKeys) {
+function handleMovement(ball, delta, getKeys, rapier, world) {
   const keys = getKeys();
 
   const impulse = { x: 0, y: 0, z: 0 };
@@ -85,6 +86,7 @@ function handleMovement(ball, delta, getKeys) {
     impulse.x -= impulseStrength;
     torque.z += torqueStrength;
   }
+  if(keys.jump) handleJump(ball, rapier, world);
 
   ball.current.applyImpulse(impulse);
   ball.current.applyTorqueImpulse(torque);
