@@ -40,25 +40,25 @@ function Controls() {
         <div className='wrapper'>
           <div
             className={classNames('key', controls.forward && 'active')}
-            onTouchStart={() => controls.forward = true}
-            onTouchEnd={() => controls.forward = false}
+            onPointerEnter={() => controls.forward = true}
+            onPointerOut={() => controls.forward = false}
           />
         </div>
         <div className='wrapper'>
           <div
             className={classNames('key', controls.leftward && 'active')}
-            onTouchStart={() => controls.leftward = true}
-            onTouchEnd={() => controls.leftward = false}
+            onPointerEnter={() => controls.leftward = true}
+            onPointerOut={() => controls.leftward = false}
           />
           <div
             className={classNames('key', controls.backward && 'active')}
-            onTouchStart={() => controls.backward = true}
-            onTouchEnd={() => controls.backward = false}
+            onPointerEnter={() => controls.backward = true}
+            onPointerOut={() => controls.backward = false}
           />
           <div
             className={classNames('key', controls.rightward && 'active')}
-            onTouchStart={() => controls.rightward = true}
-            onTouchEnd={() => controls.rightward = false}
+            onPointerEnter={() => controls.rightward = true}
+            onPointerOut={() => controls.rightward = false}
           />
         </div>
       </div>
@@ -72,8 +72,8 @@ function Controls() {
       <div className='wrapper'>
         <div
           className={classNames('key space', controls.jump && 'active')}
-          onTouchStart={() => controls.jump = true}
-          onPointerUp={() => controls.jump = false}
+          onPointerEnter={() => controls.jump = true}
+          onPointerOut={() => controls.jump = false}
         />
       </div>
     </div>
