@@ -1,4 +1,4 @@
-import { Float, Text } from '@react-three/drei';
+import { Float, Text3D } from '@react-three/drei';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor1Material } from '../../utils/Materials';
 
@@ -6,17 +6,22 @@ export default function BlockStart({ position = [0, 0, 0] }) {
   return (
     <group position={position}>
       <Float>
-        <Text
-          position={[1, 0.75, 0]}
-          scale={0.5}
-          maxWidth={0.25}
-          lineHeight={0.85}
-          textAlign='center'
+        <Text3D
+          font='./fonts/Bebas Neue_Regular.json'
+          scale={0.2}
+          position={[-0.75, 1, 0]}
+          curveSegments={12}
+          bevelEnabled
+          bevelThickness={0.02}
+          bevelSize={0.02}
+          bevelOffset={0}
+          bevelSegments={5}
         >
           Obstacle Course
-          <meshBasicMaterial toneMapped={false} />
-        </Text>
+          <meshPhysicalMaterial color='#66bfff' />
+        </Text3D>
       </Float>
+
       {/*Floor*/}
       <mesh
         geometry={boxGeometry}

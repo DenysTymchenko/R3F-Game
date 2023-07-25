@@ -1,4 +1,4 @@
-import { Float, Text } from '@react-three/drei';
+import { Float, Text3D } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor1Material } from '../../utils/Materials';
@@ -10,12 +10,20 @@ export default function BlockEnd({ position = [0, 0, 0] }) {
   return (
     <group position={position}>
       <Float>
-        <Text
-          position={[0, 1, 1]}
+        <Text3D
+          font='./fonts/Bebas Neue_Regular.json'
+          scale={0.5}
+          position={[-0.5, 2, 0]}
+          curveSegments={12}
+          bevelEnabled
+          bevelThickness={0.02}
+          bevelSize={0.02}
+          bevelOffset={0}
+          bevelSegments={5}
         >
           Finish!!!
-          <meshBasicMaterial toneMapped={false} />
-        </Text>
+          <meshPhysicalMaterial color='#4B91C2' />
+        </Text3D>
       </Float>
 
       <RigidBody type='fixed' colliders='hull'>
