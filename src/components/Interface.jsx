@@ -62,6 +62,13 @@ function Controls() {
           />
         </div>
       </div>
+      {/*<div className='joystick'>
+        <div
+          className='controller'
+          onTouchStart={(e) => console.log(e.clientY)}
+        >
+        </div>
+      </div>*/}
       <div className='wrapper'>
         <div
           className={classNames('key space', controls.jump && 'active')}

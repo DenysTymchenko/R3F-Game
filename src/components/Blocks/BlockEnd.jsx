@@ -6,7 +6,6 @@ import Flag from '../Flag';
 
 
 export default function BlockEnd({ position = [0, 0, 0] }) {
-  console.log(position);
   return (
     <group position={position}>
       <Float>

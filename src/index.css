@@ -60,7 +60,7 @@
 
 /*Controls*/
 .controls {
-  padding-bottom: 35px;
+  padding: 0 5px 35px 5px ;
 }
 
 .controls .wrapper {
@@ -84,6 +84,26 @@
   background: #0000007a;
 }
 
+/*.controls .joystick {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  background-color: #0000007a;
+}
+
+.controls .joystick .controller {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #82828244;
+  border: 2px solid white;
+  pointer-events: auto;
+}*/
+
 
 @media screen and (max-width: 768px) {
   .controls {
@@ -106,10 +126,10 @@
 }
 
 @media screen and (max-width: 525px) {
-  .controls .key {
+  /*.controls .key {
     width: 50px;
     height: 50px;
-  }
+  }*/
 
   .controls .key.space {
     width: 200px;
