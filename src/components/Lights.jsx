@@ -7,7 +7,7 @@ export default function Lights() {
   // Making directionalLight follow the camera, which follows the ball 
   useFrame((state) => {
     dirLight.current.position.z = state.camera.position.z - 3; // -3 to make lights position a little bit forward, so the shadows wouldn't appear before player's eyes
-    dirLight.current.target.position.z = state.camera.position.z - 4;
+    dirLight.current.target.position.z = state.camera.position.z - 3.5;
     dirLight.current.target.updateMatrixWorld();
   })
 

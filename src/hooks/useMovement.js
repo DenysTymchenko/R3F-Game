@@ -98,7 +98,7 @@ function cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCa
   const cameraPosition = new Vector3();
   cameraPosition.copy(ballPosition);
   cameraPosition.z += 2.25;
-  cameraPosition.y += 0.75;
+  cameraPosition.y += 1.25;
 
   const cameraTarget = new Vector3();
   cameraTarget.copy(ballPosition);
