@@ -1,6 +1,7 @@
 import { RigidBody } from '@react-three/rapier';
 import { boxGeometry, torusGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
+import { hitSound } from '../../utils/Audio';
 
 export default function BlockTorus({ position = [0, 0, 0] }) {
   return (
@@ -29,6 +30,10 @@ function Torus({ position }) {
       colliders='trimesh'
       restitution={0.2}
       fFriction={0}
+      onContactForce={() => {
+        hitSound.currentTime = 0;
+        hitSound.play();
+      }}
     >
       <mesh
         geometry={torusGeometry}

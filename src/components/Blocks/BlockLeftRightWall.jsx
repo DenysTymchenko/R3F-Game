@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { RigidBody } from '@react-three/rapier';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
+import { hitSound } from '../../utils/Audio';
 
 export default function BlockLeftRightWall({ position = [0, 0, 0] }) {
   const obstacle = useRef();
@@ -28,7 +29,16 @@ export default function BlockLeftRightWall({ position = [0, 0, 0] }) {
       />
 
       {/*Obstacle*/}
-      <RigidBody type='kinematicPosition' ref={obstacle} restitution={0.2} friction={0}>
+      <RigidBody
+        ref={obstacle}
+        type='kinematicPosition'
+        restitution={0.2}
+        friction={0}
+        onContactForce={() => {
+          hitSound.currentTime = 0;
+          hitSound.play();
+        }}
+      >
         <mesh
           geometry={boxGeometry}
           material={obstacleMaterial}

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware'
+import { finishSound, startSound } from '../utils/Audio';
 
 export default create(subscribeWithSelector((set) => {
   return {
@@ -11,6 +12,9 @@ export default create(subscribeWithSelector((set) => {
     start() {
       set((state) => {
         if (state.phase === 'ready') {
+          startSound.currentTime = 0;
+          startSound.play();
+
           return {
             phase: 'playing',
             startTime: Date.now(),
@@ -36,6 +40,8 @@ export default create(subscribeWithSelector((set) => {
     end() {
       set((state) => {
         if (state.phase === 'playing') {
+          finishSound.play();
+
           return {
             phase: 'ended',
             endTime: Date.now(),
@@ -49,7 +55,7 @@ export default create(subscribeWithSelector((set) => {
 
     setNewBestTime(newBest) {
       localStorage.setItem('bestTime', newBest);
-      
+
       set(() => {
         return {
           bestTime: newBest

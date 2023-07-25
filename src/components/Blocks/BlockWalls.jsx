@@ -1,6 +1,7 @@
 import { RigidBody } from '@react-three/rapier';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
+import { hitSound } from '../../utils/Audio';
 
 export default function BlockWalls({ position = [0, 0, 0] }) {
   return (
@@ -27,6 +28,10 @@ function Wall({ position }) {
       type='fixed'
       restitution={0.2}
       fFriction={0}
+      onContactForce={() => {
+        hitSound.currentTime = 0;
+        hitSound.play();
+      }}
     >
       <mesh
         geometry={boxGeometry}

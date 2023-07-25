@@ -4,6 +4,7 @@ import { RigidBody } from '@react-three/rapier';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 import { Euler, Quaternion } from 'three';
+import { hitSound } from '../../utils/Audio';
 
 export default function BlockRotating({ position = [0, 0, 0], direction = 'left' }) {
   const obstacle = useRef();
@@ -30,7 +31,17 @@ export default function BlockRotating({ position = [0, 0, 0], direction = 'left'
       />
 
       {/*Obstacle*/}
-      <RigidBody type='kinematicPosition' ref={obstacle} position-y={1.5} restitution={0.2} friction={0}>
+      <RigidBody
+        ref={obstacle}
+        type='kinematicPosition'
+        position-y={1.5}
+        restitution={0.2}
+        friction={0}
+        onContactForce={() => {
+          hitSound.currentTime = 0;
+          hitSound.play();
+        }}
+      >
         <mesh
           geometry={boxGeometry}
           material={obstacleMaterial}

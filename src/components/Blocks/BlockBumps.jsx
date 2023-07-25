@@ -1,6 +1,7 @@
 import { ConeCollider, RigidBody } from '@react-three/rapier';
 import { boxGeometry, coneGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
+import { hitSound } from '../../utils/Audio';
 
 export default function BlockBumps({ position = [0, 0, 0] }) {
   return (
@@ -16,17 +17,17 @@ export default function BlockBumps({ position = [0, 0, 0] }) {
 
       {/*Obstacles*/}
       {/*Back*/}
-      <Bump position={[-1.5, 0.2, -1]}/>
-      <Bump position={[0, 0.2, -1]}/>
-      <Bump position={[1.5, 0.2, -1]}/>
+      <Bump position={[-1.5, 0.2, -1]} />
+      <Bump position={[0, 0.2, -1]} />
+      <Bump position={[1.5, 0.2, -1]} />
       {/*Middle*/}
-      <Bump position={[-1.5, 0.2, 0]}/>
-      <Bump position={[0, 0.2, 0]}/>
-      <Bump position={[1.5, 0.2, 0]}/>
+      <Bump position={[-1.5, 0.2, 0]} />
+      <Bump position={[0, 0.2, 0]} />
+      <Bump position={[1.5, 0.2, 0]} />
       {/*Forward*/}
-      <Bump position={[-1.5, 0.2, 1]}/>
-      <Bump position={[0, 0.2, 1]}/>
-      <Bump position={[1.5, 0.2, 1]}/>
+      <Bump position={[-1.5, 0.2, 1]} />
+      <Bump position={[0, 0.2, 1]} />
+      <Bump position={[1.5, 0.2, 1]} />
     </group>
   )
 }
@@ -39,6 +40,10 @@ function Bump({ position }) {
       colliders={false}
       restitution={0}
       fFriction={-5}
+      onContactForce={() => {
+        hitSound.currentTime = 0;
+        hitSound.play();
+      }}
     >
       <mesh
         geometry={coneGeometry}
