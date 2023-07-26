@@ -34,10 +34,7 @@ export default function BlockLeftRightWall({ position = [0, 0, 0] }) {
         type='kinematicPosition'
         restitution={0.2}
         friction={0}
-        onContactForce={() => {
-          hitSound.currentTime = 0;
-          hitSound.play();
-        }}
+        onCollisionEnter={() => hitSound.play()}
       >
         <mesh
           geometry={boxGeometry}

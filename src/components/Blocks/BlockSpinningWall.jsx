@@ -37,10 +37,7 @@ export default function BlockSpinningWall({ position = [0, 0, 0], direction = 'l
         position-y={0.6}
         restitution={0.2}
         friction={0}
-        onContactForce={() => {
-          hitSound.currentTime = 0;
-          hitSound.play();
-        }}
+        onCollisionEnter={() => hitSound.play()}
       >
         <mesh
           geometry={boxGeometry}

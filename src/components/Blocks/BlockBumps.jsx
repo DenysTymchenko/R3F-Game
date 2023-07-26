@@ -40,10 +40,7 @@ function Bump({ position }) {
       colliders={false}
       restitution={0}
       fFriction={-5}
-      onContactForce={() => {
-        hitSound.currentTime = 0;
-        hitSound.play();
-      }}
+      onCollisionEnter={() => hitSound.play()}
     >
       <mesh
         geometry={coneGeometry}

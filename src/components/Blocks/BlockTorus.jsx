@@ -30,10 +30,7 @@ function Torus({ position }) {
       colliders='trimesh'
       restitution={0.2}
       fFriction={0}
-      onContactForce={() => {
-        hitSound.currentTime = 0;
-        hitSound.play();
-      }}
+      onCollisionEnter={() => hitSound.play()}
     >
       <mesh
         geometry={torusGeometry}

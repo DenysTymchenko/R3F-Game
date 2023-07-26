@@ -36,10 +36,7 @@ export default function BlockLimbo({ position = [0, 0, 0] }) {
         position-y={0.2}
         restitution={0.2}
         friction={0}
-        onContactForce={() => {
-          hitSound.currentTime = 0;
-          hitSound.play();
-        }}
+        onCollisionEnter={() => hitSound.play()}
       >
         <mesh
           geometry={boxGeometry}
