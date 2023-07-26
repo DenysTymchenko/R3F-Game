@@ -4,6 +4,8 @@ import { RigidBody } from '@react-three/rapier';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 import { hitSound } from '../../utils/Audio';
+import Floor from '../Floor.jsx';
+import WallBorders from '../WallBorders.jsx';
 
 
 export default function BlockLimbo({ position = [0, 0, 0] }) {
@@ -20,16 +22,6 @@ export default function BlockLimbo({ position = [0, 0, 0] }) {
 
   return (
     <group position={position}>
-      {/*Floor*/}
-      <mesh
-        geometry={boxGeometry}
-        material={floor2Material}
-        scale={[4, 0.2, 4]}
-        position-y={-0.1}
-        receiveShadow
-      />
-
-      {/*Obstacle*/}
       <RigidBody
         ref={obstacle}
         type='kinematicPosition'
@@ -46,6 +38,8 @@ export default function BlockLimbo({ position = [0, 0, 0] }) {
           receiveShadow
         />
       </RigidBody>
+      <WallBorders />
+      <Floor />
     </group>
   )
 }

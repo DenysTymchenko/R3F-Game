@@ -5,6 +5,8 @@ import { Euler, Quaternion } from 'three';
 import { boxGeometry } from '../../utils/Geometries';
 import { floor2Material, obstacleMaterial } from '../../utils/Materials';
 import { hitSound } from '../../utils/Audio';
+import WallBorders from '../WallBorders.jsx';
+import Floor from '../Floor.jsx';
 
 export default function BlockSpinningWall({ position = [0, 0, 0], direction = 'left' }) {
   const obstacle = useRef();
@@ -21,16 +23,6 @@ export default function BlockSpinningWall({ position = [0, 0, 0], direction = 'l
 
   return (
     <group position={position}>
-      {/*Floor*/}
-      <mesh
-        geometry={boxGeometry}
-        material={floor2Material}
-        scale={[4, 0.2, 4]}
-        position-y={-0.1}
-        receiveShadow
-      />
-
-      {/*Obstacle*/}
       <RigidBody
         ref={obstacle}
         type='kinematicPosition'
@@ -47,6 +39,9 @@ export default function BlockSpinningWall({ position = [0, 0, 0], direction = 'l
           receiveShadow
         />
       </RigidBody>
+      <WallBorders />
+      <Floor />
+
     </group>
   )
 }

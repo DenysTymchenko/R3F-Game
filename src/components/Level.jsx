@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import levelObstacles from '../utils/LevelObstacles';
 import BlockStart from './Blocks/BlockStart';
 import BlockEnd from './Blocks/BlockEnd';
-import Bounds from './Bounds';
+import Bounds from './Bounds.jsx';
 
 
 export default function Level() {
@@ -11,7 +11,7 @@ export default function Level() {
       <BlockStart position={[0, 0, 0]} />
       {levelObstacles.map((Obstacle, index) => <Fragment key={index}>{Obstacle}</Fragment>)}
       <BlockEnd position={[0, 0, -((levelObstacles.length + 1) * 4)]} />
-      <Bounds length={levelObstacles.length + 2} /> {/* length = all obstacles + start and end blocks */}
+      <Bounds length={levelObstacles.length + 2} /> {/* length = all obstacles + blockStart and blockEnd */}
     </>
   );
 }

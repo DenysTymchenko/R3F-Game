@@ -1,8 +1,9 @@
 import { Float, Text3D } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
-import { boxGeometry } from '../../utils/Geometries';
-import { floor1Material } from '../../utils/Materials';
-import Flag from '../Flag';
+import Flag from '../Models/Flag.jsx';
+import FloorDarker from '../FloorDarker.jsx';
+import WallBorders from '../WallBorders.jsx';
+import Wall from '../Models/Wall.jsx';
 
 
 export default function BlockEnd({ position = [0, 0, 0] }) {
@@ -28,15 +29,9 @@ export default function BlockEnd({ position = [0, 0, 0] }) {
       <RigidBody type='fixed' colliders='hull'>
         <Flag />
       </RigidBody>
-
-      {/*Floor*/}
-      <mesh
-        geometry={boxGeometry}
-        material={floor1Material}
-        scale={[4, 0.2, 4]}
-        receiveShadow
-      >
-      </mesh>
+      <WallBorders /> {/*Left and right walls*/}
+      <Wall position={[0, 0, -2]} /> {/*End wall*/}
+      <FloorDarker />
     </group>
   );
 }
