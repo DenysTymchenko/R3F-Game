@@ -1,7 +1,16 @@
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber'
-import { KeyboardControls } from '@react-three/drei';
+import { Html, KeyboardControls } from '@react-three/drei';
 import Experince from './components/Experience'
 import Interface from './components/Interface';
+
+function Loader() {
+  return (
+    <Html transform className='loader-wrapper'>
+      <span className='loader'>Load&nbsp;ng</span>
+    </Html>
+  )
+}
 
 function App() {
   return (
@@ -30,7 +39,9 @@ function App() {
       ]}
     >
       <Canvas shadows>
-        <Experince />
+        <Suspense fallback={<Loader />}>
+          <Experince />
+        </Suspense>
       </Canvas>
       <Interface />
     </KeyboardControls>

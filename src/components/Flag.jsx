@@ -11,3 +11,5 @@ export default function Flag() {
     </group>
   )
 }
+
+useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/flag/model.gltf')

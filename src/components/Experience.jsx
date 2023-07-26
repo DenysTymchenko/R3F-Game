@@ -1,20 +1,14 @@
-import { Physics } from '@react-three/rapier'
-import Lights from './Lights'
-import Level from './Level'
-import Ball from './Ball'
-import useGame from '../store/useGame'
-import { bgMusic } from '../utils/Audio'
+import { Physics } from '@react-three/rapier';
+import Lights from './Lights';
+import Level from './Level';
+import Ball from './Ball';
 
-export default function Experince() {
-  const obstaclesCount = useGame((state) => state.obstaclesCount);
-  
+export default function Experience() {
   return (
-    <>
-      <Physics>
-        <Lights />
-        <Level obstaclesCount={obstaclesCount} />
-        <Ball />
-      </Physics>
-    </>
-  )
+    <Physics>
+      <Lights />
+      <Level />
+      <Ball />
+    </Physics>
+  );
 }
