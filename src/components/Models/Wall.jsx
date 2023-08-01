@@ -9,7 +9,7 @@ export default function Wall(props) {
 
   return (
     <group {...props} dispose={null}>
-      <group scale={[1, 0.25, 0.5]} rotation={[Math.PI / 2, 0, 0,]}>
+      <group scale={[1, 0.25, 0.6]} rotation={[Math.PI / 2, 0, 0,]}>
         <mesh
           geometry={nodes.Cube4230.geometry}
           material={materials['Stone.050']}

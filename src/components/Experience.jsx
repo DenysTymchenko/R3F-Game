@@ -8,9 +8,9 @@ export default function Experience() {
   return (
     <>
       <Environment background files='./background.hdr' />
+      <Lights />
 
       <Physics>
-        <Lights />
         <Level />
         <Ball />
       </Physics>

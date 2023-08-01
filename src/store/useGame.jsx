@@ -15,10 +15,10 @@ export default create(subscribeWithSelector((set) => {
           startSound.currentTime = 0;
           startSound.play();
 
-          setTimeout(() => {
-            bgMusic.loop = true;
-            bgMusic.play();
-          }, 1000)
+          // setTimeout(() => {
+          //   bgMusic.loop = true;
+          //   bgMusic.play();
+          // }, 1000)
 
           return {
             phase: 'playing',
