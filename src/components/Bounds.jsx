@@ -1,6 +1,4 @@
 import { RigidBody, CuboidCollider } from '@react-three/rapier';
-import { boxGeometry } from '../utils/Geometries';
-import { wallMaterial } from '../utils/Materials';
 
 export default function Bounds({ length }) {
   const depthOfOneBlock = 4;
@@ -23,13 +21,11 @@ export default function Bounds({ length }) {
           args={[2, 1.4, 0.1]}
           position={[0, 1, -(length * depthOfOneBlock) + 2]}
         />
-        {/* Floor */}
-        {/*<CuboidCollider*/}
-        {/*  args={[2, 0.1, length * 2]}*/}
-        {/*  position={[0, -0.1, -(length * 2) + 2]}*/}
-        {/*  restitution={0.2}*/}
-        {/*  friction={1}*/}
-        {/*/>*/}
+        {/*Sky Box*/}
+        <CuboidCollider
+          args={[2, 0.1, length * 2]}
+          position={[0, 2.9, -(length * 2) + 2]}
+        />
       </RigidBody>
     </group>
   )
