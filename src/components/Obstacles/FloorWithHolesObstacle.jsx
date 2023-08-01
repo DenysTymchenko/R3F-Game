@@ -1,13 +1,37 @@
-import { Fragment } from 'react';
 import { RigidBody } from '@react-three/rapier';
-import { hitSound } from '../../utils/Audio.js';
 import FloorWithHoles from '../Models/FloorWithHoles.jsx';
+import Decorations from '../Decorations/Decorations.jsx';
+import WallBorders from '../WallBorders.jsx';
 import Tree from '../Models/Tree.jsx';
 import Tree2 from '../Models/Tree2.jsx';
 import Shovel from '../Models/Shovel.jsx';
-import WallBorders from '../WallBorders.jsx';
 
 export default function ({ position = [0, 0, 0] }) {
+  const trees = [
+    {
+      position: [0, 0.1, 0],
+      scale: 0.15,
+      component: <Tree />
+    },
+    {
+      position: [-1, 0.1, 1.5],
+      scale: [0.15, 0.2, 0.15],
+      component: <Tree2 />
+    },
+    {
+      position: [1, 0.1, 1.8],
+      scale: 0.1,
+      component: <Tree2 />
+    },
+  ];
+  const bushesPositions = [
+    [-1.2, 0, -1.3],
+  ];
+  const rocksPositions = [
+    [-0.2, 0, 1],
+    [1, 0, 0],
+  ];
+
   return (
     <group position={position}>
       <RigidBody
@@ -17,8 +41,12 @@ export default function ({ position = [0, 0, 0] }) {
       >
         <FloorWithHoles />
       </RigidBody>
+      <Decorations
+        trees={trees}
+        bushesPositions={bushesPositions}
+        rocksPositions={rocksPositions}
+      />
       <Shovels />
-      <Trees />
       <WallBorders />
     </group>
   )
@@ -54,42 +82,4 @@ function Shovels() {
       ))}
     </>
   );
-}
-
-function Trees() {
-  const trees = [
-    {
-      position: [0, 0.1, 0],
-      scale: 0.15,
-      component: <Tree />
-    },
-    {
-      position: [-1, 0.1, 1.5],
-      scale: [0.15, 0.2, 0.15],
-      component: <Tree2 />
-    },
-    {
-      position: [1, 0.1, 1.8],
-      scale: 0.1,
-      component: <Tree2 />
-    },
-  ];
-
-  return (
-    <>
-      {trees.map((tree, index) => (
-        <RigidBody
-          key={index}
-          position={tree.position}
-          scale={tree.scale}
-          type='fixed'
-          colliders='trimesh'
-          restitution={0.1}
-          onCollisionEnter={() => hitSound.play()}
-        >
-          <Fragment>{tree.component}</Fragment>
-        </RigidBody>
-      ))}
-    </>
-  )
 }

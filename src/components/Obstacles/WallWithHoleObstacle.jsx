@@ -1,10 +1,35 @@
-import WallBorders from '../WallBorders.jsx';
-import Floor from '../Floor.jsx';
-import WallWithHole from '../Models/WallWithHole.jsx';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { hitSound } from '../../utils/Audio.js';
+import Decorations from '../Decorations/Decorations.jsx';
+import WallBorders from '../WallBorders.jsx';
+import WallWithHole from '../Models/WallWithHole.jsx';
+import Floor from '../Floor.jsx';
+import Tree from '../Models/Tree.jsx';
+import Tree2 from '../Models/Tree2.jsx';
 
 export default function WallWithHoleObstacle({ position = [0, 0, 0] }) {
+  const trees = [
+    {
+      position: [-1, 0.1, 1.5],
+      scale: 0.15,
+      component: <Tree2 />
+    },
+    {
+      position: [1.2, 0.1, 1.2],
+      scale: 0.1,
+      component: <Tree2 />
+    },
+  ];
+  const bushesPositions = [
+    [1.5, 0, 1.6],
+    [-1.5, 0, 1.2],
+  ];
+  const rocksPositions = [
+    [1.3, 0, -1.3],
+    [-1, 0, -1.1],
+    [0, 0, -0.5],
+  ];
+
   return (
     <group position={position}>
       <RigidBody
@@ -17,6 +42,11 @@ export default function WallWithHoleObstacle({ position = [0, 0, 0] }) {
         <WallWithHole />
         <Collider />
       </RigidBody>
+      <Decorations
+        trees={trees}
+        bushesPositions={bushesPositions}
+        rocksPositions={rocksPositions}
+      />
       <WallBorders />
       <Floor />
     </group>

@@ -2,8 +2,9 @@ import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { hitSound } from '../../utils/Audio.js';
-import Hammer from '../Models/Hammer.jsx';
+import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
+import Hammer from '../Models/Hammer.jsx';
 import Floor from '../Floor.jsx';
 
 export default function UpDownHammer({ position = [0, 0, 0] }) {
@@ -17,6 +18,19 @@ export default function UpDownHammer({ position = [0, 0, 0] }) {
 
     hammer.current.setNextKinematicTranslation({ x: position[0], y, z: position[2] });
   })
+
+  const bushesPositions = [
+    [0.4, 0, 1.6],
+    [1.4, 0, 1.1],
+    [-1.4, 0, 1.1],
+    [-0.4, 0, -1.6],
+  ];
+  const rocksPositions = [
+    [0, 0, -0.7],
+    [-1.4, 0, 0.7],
+    [1.7, 0, -1.3],
+    [-1.4, 0, -1.2],
+  ];
 
   return (
     <group position={position}>
@@ -35,6 +49,10 @@ export default function UpDownHammer({ position = [0, 0, 0] }) {
         {/*Stone*/}
         <CuboidCollider args={[0.4, 0.15, 0.2]} position={[0, -0.15, 0]} />
       </RigidBody>
+      <Decorations
+        bushesPositions={bushesPositions}
+        rocksPositions={rocksPositions}
+      />
       <WallBorders />
       <Floor />
     </group>

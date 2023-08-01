@@ -3,10 +3,21 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { hitSound } from '../../utils/Audio.js';
 import WoodenDoor from '../Models/WoodenDoor.jsx';
 import Wall from '../Models/Wall.jsx';
+import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Floor from '../Floor.jsx';
 
 export default function KickInDoor({ position = [0, 0, 0] }) {
+  const bushesPositions = [
+    [-1.4, 0, 0],
+    [1.4, 0, 1],
+    [1, 0, -1],
+  ];
+  const rocksPositions = [
+    [-0.7, 0, 0],
+    [-0.9, 0, 0.5],
+    [1.6, 0, -1],
+  ];
   const [rigidBodyType, setRigidBodyType] = useState('fixed');
   const [doorKicked, setDoorKicked] = useState(false);
 
@@ -35,6 +46,7 @@ export default function KickInDoor({ position = [0, 0, 0] }) {
         <CuboidCollider args={[0.8, 1.2, 0.2]} position={[0, 0.2, 0]} />
       </RigidBody>
       <Walls />
+      <Decorations bushesPositions={bushesPositions} rocksPositions={rocksPositions} />
       <WallBorders />
       <Floor />
     </group>

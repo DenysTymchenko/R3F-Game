@@ -3,20 +3,25 @@ import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { Euler, Quaternion } from 'three';
 import { hitSound } from '../../utils/Audio.js';
+import Decorations from '../Decorations/Decorations.jsx';
+import WallBorders from '../WallBorders.jsx';
 import Gate from '../Models/Gate.jsx';
 import Wall from '../Models/Wall.jsx';
 import Crate from '../Models/Crate.jsx';
-import Rocks from '../Models/Rocks.jsx';
-import WallBorders from '../WallBorders.jsx';
 import Floor from '../Floor.jsx';
 
 export default function OpenCloseGates({ position = [0, 0, 0] }) {
+  const rocksPositions = [
+    [1, 0, 1],
+    [-1, 0, 0],
+  ];
+
   return (
     <group position={position}>
       <Gates />
       <Walls />
       <Crates />
-      <LyingRocks />
+      <Decorations rocksPositions={rocksPositions} />
       <WallBorders />
       <Floor />
     </group>
@@ -98,30 +103,6 @@ function Walls() {
       ))}
     </>
   );
-}
-
-function LyingRocks() {
-  const rocksPositions = [
-    [1, 0, 1],
-    [-1, 0, 0],
-  ];
-
-  return (
-    <>
-      {rocksPositions.map((position, index) => (
-        <RigidBody
-          key={'rocks' + index}
-          position={position}
-          scale={0.5}
-          type='fixed'
-          restitution={0.2}
-          friction={0}
-        >
-          <Rocks />
-        </RigidBody>
-      ))}
-    </>
-  )
 }
 
 function Crates() {
