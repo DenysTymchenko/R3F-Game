@@ -1,5 +1,5 @@
 import { useGLTF } from '@react-three/drei';
-import { lime, limegreen, wood } from '../../utils/Materials.js';
+import { limegreen, wood } from '../../utils/Materials.js';
 
 
 export default function Tree(props) {
@@ -17,7 +17,7 @@ export default function Tree(props) {
         castShadow
         receiveShadow
         geometry={nodes.Icosphere.geometry}
-        material={lime}
+        material={limegreen}
         position={[-1.748, 3.119, 1.059]}
         scale={1.294}
       />
@@ -33,7 +33,7 @@ export default function Tree(props) {
         castShadow
         receiveShadow
         geometry={nodes.Icosphere002.geometry}
-        material={lime}
+        material={limegreen}
         position={[0.716, 2.99, -0.129]}
         scale={1.121}
       />
@@ -56,7 +56,7 @@ export default function Tree(props) {
         castShadow
         receiveShadow
         geometry={nodes.Icosphere003.geometry}
-        material={lime}
+        material={limegreen}
         position={[-0.631, 4.195, -0.129]}
         scale={1.437}
       />
