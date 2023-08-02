@@ -1,7 +1,7 @@
 import { Float, Text3D } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 import Flag from '../Models/Flag.jsx';
-import FloorDarker from '../FloorDarker.jsx';
+import FloorLighter from '../FloorLighter.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Wall from '../Models/Wall.jsx';
 
@@ -31,7 +31,7 @@ export default function BlockEnd({ position = [0, 0, 0] }) {
       </RigidBody>
       <WallBorders /> {/*Left and right walls*/}
       <Wall position={[0, 0, -2]} /> {/*End wall*/}
-      <FloorDarker />
+      <FloorLighter />
     </group>
   );
 }

@@ -3,8 +3,6 @@ import { hitSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Floor from '../Floor.jsx';
-import Tree from '../Models/Tree.jsx';
-import Tree2 from '../Models/Tree2.jsx';
 import Fence from '../Models/Fence.jsx';
 
 export default function FencesObstacle({ position = [0, 0, 0] }) {
@@ -16,13 +14,12 @@ export default function FencesObstacle({ position = [0, 0, 0] }) {
   const trees = [
     {
       position: [-1.4, 0.1, 1.8],
-      scale: 3,
-      component: <Tree />
+      scale: 0.2,
     },
     {
-      position: [-1, 0.1, -0.7],
-      scale: 0.1,
-      component: <Tree2 />
+      position: [-1, 0.1, -0.9],
+      scale: 0.25,
+      rotation: [0, Math.PI / 2, 0],
     },
   ]
   const bushesPositions = [

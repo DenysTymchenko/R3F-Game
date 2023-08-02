@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { Euler, Quaternion } from 'three';
 import { hitSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
@@ -26,10 +26,10 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
       position: [0, 0, 0],
     },
   ];
+  const speed = 2;
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    const speed = 2;
 
     const rotationRightToLeft = new Quaternion();
     rotationRightToLeft.setFromEuler(new Euler(Math.PI / 2, 0, time * speed));
@@ -63,14 +63,14 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
           scale={1.3}
           ref={sword.ref}
           type='kinematicPosition'
-          colliders='hull'
+          colliders={false}
           position-y={0.2}
           restitution={0.2}
           friction={0}
           onCollisionEnter={() => hitSound.play()}
         >
-
           <Sword position={sword.position} />
+          <CuboidCollider args={[0.1, 0.7, 0.1]} position={[0, 0.6, sword.position[2]]} />
         </RigidBody>
       ))}
       <Decorations

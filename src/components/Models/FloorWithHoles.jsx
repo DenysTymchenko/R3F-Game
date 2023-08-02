@@ -1,5 +1,5 @@
 import { useGLTF } from '@react-three/drei'
-import { floor2Material } from '../../utils/Materials.js';
+import { limegreen } from '../../utils/Materials.js';
 
 export default function FloorWithHoles(props) {
   const { nodes } = useGLTF('./models/floorWithHoles.glb');
@@ -8,7 +8,7 @@ export default function FloorWithHoles(props) {
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.Cube.geometry}
-        material={floor2Material}
+        material={limegreen}
         position={[0, -0.1, 0]}
         scale={[2, 0.1, 2]}
         rotation-y={-Math.PI / 2}

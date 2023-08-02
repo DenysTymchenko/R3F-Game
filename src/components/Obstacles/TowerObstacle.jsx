@@ -1,4 +1,4 @@
-import { CuboidCollider, CylinderCollider, RigidBody } from '@react-three/rapier';
+import { CylinderCollider, RigidBody } from '@react-three/rapier';
 import Tower from '../Models/Tower.jsx';
 import Barrel from '../Models/Barrel.jsx';
 import Bricks from '../Models/Bricks.jsx';
@@ -16,7 +16,7 @@ export default function TowerObstacle({ position = [0, 0, 0] }) {
         colliders={false}
       >
         <Tower />
-        <CylinderCollider args={[3.5, 1.3]} position={[-5.7, 0, -1.5]} />
+        <CylinderCollider args={[1.7, 1.3]} position={[-5.7, 1.5, -1.5]} />
       </RigidBody>
       <Barrels />
       <BricksRigidBodies />

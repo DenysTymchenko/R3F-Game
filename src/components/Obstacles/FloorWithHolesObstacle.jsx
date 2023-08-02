@@ -2,26 +2,24 @@ import { RigidBody } from '@react-three/rapier';
 import FloorWithHoles from '../Models/FloorWithHoles.jsx';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
-import Tree from '../Models/Tree.jsx';
-import Tree2 from '../Models/Tree2.jsx';
 import Shovel from '../Models/Shovel.jsx';
 
 export default function ({ position = [0, 0, 0] }) {
   const trees = [
     {
-      position: [0, 0.1, 0],
-      scale: 0.15,
-      component: <Tree />
+      position: [0.2, 0.1, 0],
+      scale: [0.3, 0.35, 0.3],
+      rotation: [0, 0, 0],
     },
     {
-      position: [-1, 0.1, 1.5],
-      scale: [0.15, 0.2, 0.15],
-      component: <Tree2 />
+      position: [-1.2, 0.1, 1.5],
+      scale: 0.25,
+      rotation: [0, Math.PI / 2, 0],
     },
     {
       position: [1, 0.1, 1.8],
-      scale: 0.1,
-      component: <Tree2 />
+      scale: 0.2,
+      rotation: [0, Math.PI / 2 + 5, 0],
     },
   ];
   const bushesPositions = [

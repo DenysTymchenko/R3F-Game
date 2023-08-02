@@ -1,9 +1,6 @@
 import { Float, Text3D } from '@react-three/drei';
-import { boxGeometry } from '../../utils/Geometries';
-import { floor1Material } from '../../utils/Materials';
-import Wall from '../Models/Wall.jsx';
 import WallBorders from '../WallBorders.jsx';
-import FloorDarker from '../FloorDarker.jsx';
+import FloorLighter from '../FloorLighter.jsx';
 
 export default function BlockStart({ position = [0, 0, 0] }) {
   return (
@@ -25,7 +22,7 @@ export default function BlockStart({ position = [0, 0, 0] }) {
         </Text3D>
       </Float>
       <WallBorders />
-      <FloorDarker />
+      <FloorLighter />
     </group>
   );
 }

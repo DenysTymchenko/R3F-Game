@@ -4,20 +4,17 @@ import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import WallWithHole from '../Models/WallWithHole.jsx';
 import Floor from '../Floor.jsx';
-import Tree from '../Models/Tree.jsx';
-import Tree2 from '../Models/Tree2.jsx';
 
 export default function WallWithHoleObstacle({ position = [0, 0, 0] }) {
   const trees = [
     {
-      position: [-1, 0.1, 1.5],
-      scale: 0.15,
-      component: <Tree2 />
+      position: [-0.8, 0.1, 1],
+      scale: 0.3,
     },
     {
-      position: [1.2, 0.1, 1.2],
-      scale: 0.1,
-      component: <Tree2 />
+      position: [1.1, 0.1, 1.5],
+      scale: 0.25,
+      rotation: [0, Math.PI / 2, 0]
     },
   ];
   const bushesPositions = [
