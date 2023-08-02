@@ -1,17 +1,18 @@
 import { useGLTF } from '@react-three/drei'
+import { stone, wood } from '../../utils/Materials.js';
 
 export default function Shovel(props) {
   const {
     nodes,
     materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/shovel/model.gltf');
+  } = useGLTF('./models/shovel.gltf');
 
   return (
       <group {...props}>
-        <mesh geometry={nodes.shovel_1.geometry} material={materials['wood.021']} />
-        <mesh geometry={nodes.shovel_2.geometry} material={materials['stone.003']} />
+        <mesh geometry={nodes.shovel_1.geometry} material={wood} />
+        <mesh geometry={nodes.shovel_2.geometry} material={stone} />
       </group>
   );
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/shovel/model.gltf')
+useGLTF.preload('./models/shovel.gltf')

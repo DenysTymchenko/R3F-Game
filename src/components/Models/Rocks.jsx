@@ -2,10 +2,7 @@ import { useGLTF } from '@react-three/drei'
 
 
 export default function Rocks(props) {
-  const {
-    nodes,
-    materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/rocks-forrest/model.gltf')
+  const { nodes, materials } = useGLTF('./models/rocks.gltf')
 
   return (
     <group {...props} dispose={null}>
@@ -19,4 +16,4 @@ export default function Rocks(props) {
   );
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/rocks-forrest/model.gltf')
+useGLTF.preload('./models/rocks.gltf')

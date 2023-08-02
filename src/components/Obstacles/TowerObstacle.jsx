@@ -1,4 +1,4 @@
-import { RigidBody } from '@react-three/rapier';
+import { CuboidCollider, CylinderCollider, RigidBody } from '@react-three/rapier';
 import Tower from '../Models/Tower.jsx';
 import Barrel from '../Models/Barrel.jsx';
 import Bricks from '../Models/Bricks.jsx';
@@ -13,9 +13,10 @@ export default function TowerObstacle({ position = [0, 0, 0] }) {
         scale={0.75}
         rotation-y={-Math.PI - 75}
         type='fixed'
-        colliders='trimesh'
+        colliders={false}
       >
         <Tower />
+        <CylinderCollider args={[3.5, 1.3]} position={[-5.7, 0, -1.5]} />
       </RigidBody>
       <Barrels />
       <BricksRigidBodies />
@@ -40,10 +41,11 @@ function Barrels() {
           position={position}
           scale={0.5}
           type='dynamic'
-          colliders='hull'
+          colliders={false}
           restitution={0.4}
         >
           <Barrel />
+          <CylinderCollider args={[0.5, 0.4]} position={[0, 0.1, 0]} />
         </RigidBody>
       ))}
     </>

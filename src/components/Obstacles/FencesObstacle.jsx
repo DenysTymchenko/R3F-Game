@@ -16,7 +16,7 @@ export default function FencesObstacle({ position = [0, 0, 0] }) {
   const trees = [
     {
       position: [-1.4, 0.1, 1.8],
-      scale: 0.1,
+      scale: 3,
       component: <Tree />
     },
     {

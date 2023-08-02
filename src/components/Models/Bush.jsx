@@ -1,19 +1,17 @@
 import { useGLTF } from '@react-three/drei'
+import { floor2Material } from '../../utils/Materials.js';
 
 export default function Bush(props) {
-  const {
-    nodes,
-    materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/plant-pirate-kit/model.gltf');
+  const { nodes } = useGLTF('./models/bush.gltf');
 
   return (
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.plant.geometry}
-        material={materials['leaves.005']}
+        material={floor2Material}
         scale={0.69} />
     </group>
   );
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/plant-pirate-kit/model.gltf');
+useGLTF.preload('./models/bush.gltf');

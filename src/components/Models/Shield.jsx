@@ -4,7 +4,7 @@ export default function Shield(props) {
   const {
     nodes,
     materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/shield/model.gltf');
+  } = useGLTF('./models/shield.gltf');
 
   return (
     <group {...props} dispose={null}>
@@ -16,4 +16,4 @@ export default function Shield(props) {
   );
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/shield/model.gltf')
+useGLTF.preload('./models/shield.gltf')

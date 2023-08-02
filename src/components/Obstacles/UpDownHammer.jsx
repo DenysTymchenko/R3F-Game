@@ -9,12 +9,11 @@ import Floor from '../Floor.jsx';
 
 export default function UpDownHammer({ position = [0, 0, 0] }) {
   const hammer = useRef();
-  // timeOffset will help us to make different hammers go up and down differently, so they don't do it be simultaneously.
-  const [timeOffset] = useState(() => Math.random() * Math.PI * 2);
+  const speed = 2.5;
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    const y = Math.sin(2.5 * time + timeOffset) + 1.15; // because of + 1.15, obstacle will never go under the floor
+    const y = Math.sin(speed * time) + 1.15; // because of + 1.15, obstacle will never go under the floor
 
     hammer.current.setNextKinematicTranslation({ x: position[0], y, z: position[2] });
   })

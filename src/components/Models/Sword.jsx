@@ -1,21 +1,19 @@
 import { useGLTF } from '@react-three/drei'
+import { metal, stone, wood } from '../../utils/Materials.js';
 
 
 export default function Sword(props) {
-  const {
-    nodes,
-    materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/sword-1/model.gltf')
+  const { nodes } = useGLTF('./models/sword.gltf')
 
   return (
     <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0,]}>
-        <mesh geometry={nodes.Cube4214.geometry} material={materials['Metal.102']} />
-        <mesh geometry={nodes.Cube4214_1.geometry} material={materials['BrownDark.073']} />
-        <mesh geometry={nodes.Cube4214_2.geometry} material={materials['Stone.037']} />
+        <mesh geometry={nodes.Cube4214.geometry} material={metal} />
+        <mesh geometry={nodes.Cube4214_1.geometry} material={wood} />
+        <mesh geometry={nodes.Cube4214_2.geometry} material={stone} />
       </group>
     </group>
   )
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/sword-1/model.gltf')
+useGLTF.preload('./models/sword.gltf')

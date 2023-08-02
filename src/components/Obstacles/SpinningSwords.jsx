@@ -69,6 +69,7 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
           friction={0}
           onCollisionEnter={() => hitSound.play()}
         >
+
           <Sword position={sword.position} />
         </RigidBody>
       ))}

@@ -1,16 +1,15 @@
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, } from '@react-three/drei'
+import { floor2Material, wood } from '../../utils/Materials.js';
 
-export default function Tree(props) {
-  const {
-    nodes,
-    materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/tree-beech/model.gltf');
+export default function Model(props) {
+  const { nodes, materials } = useGLTF('./models/tree.gltf')
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes['tree-beech'].geometry} material={materials.color_main} />
+      <mesh geometry={nodes.Mesh_tree_large.geometry} material={floor2Material} />
+      <mesh geometry={nodes.Mesh_tree_large_1.geometry} material={wood} />
     </group>
-  );
+  )
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/tree-beech/model.gltf')
+useGLTF.preload('./models/tree.gltf')

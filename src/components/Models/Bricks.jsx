@@ -1,20 +1,18 @@
 import { useGLTF } from '@react-three/drei'
+import { stone } from '../../utils/Materials.js';
 
 export default function Bricks(props) {
-  const {
-    nodes,
-    materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/bricks/model.gltf')
+  const { nodes } = useGLTF('./models/bricks.gltf')
+
   return (
     <group {...props} dispose={null}>
       <mesh
         geometry={nodes.bricks.geometry}
-        material={materials['Stone.014']} r
-        otation={[Math.PI / 2, 0, 0,]}
+        material={stone}
         receiveShadow
       />
     </group>
   )
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/bricks/model.gltf')
+useGLTF.preload('./models/bricks.gltf')

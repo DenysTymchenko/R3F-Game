@@ -1,23 +1,21 @@
 import { useGLTF, } from '@react-three/drei'
+import { stone, stoneDark } from '../../utils/Materials.js';
 
 
 export default function Wall(props) {
-  const {
-    nodes,
-    materials
-  } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/wall/model.gltf')
+  const { nodes } = useGLTF('./models/wall.gltf')
 
   return (
     <group {...props} dispose={null}>
       <group scale={[1, 0.25, 0.6]} rotation={[Math.PI / 2, 0, 0,]}>
         <mesh
           geometry={nodes.Cube4230.geometry}
-          material={materials['Stone.050']}
+          material={stone}
           castShadow
         />
         <mesh
           geometry={nodes.Cube4230_1.geometry}
-          material={materials['StoneDark.011']}
+          material={stoneDark}
           castShadow
         />
       </group>
@@ -26,4 +24,4 @@ export default function Wall(props) {
   )
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/wall/model.gltf')
+useGLTF.preload('./models/wall.gltf')
