@@ -41,15 +41,17 @@ function handleJump(ball, rapier, world) {
   const direction = { x: 0, y: -1, z: 0 };
   const ray = new rapier.Ray(origin, direction);
   const hit = world.castRay(ray, 10, true);
-  if (hit?.toi <= 0.1) {
-    ball.current.applyImpulse({ x: 0, y: 0.15, z: 0 });
+  console.log(hit?.toi)
+  console.log(Math.floor(hit?.toi * 10) / 10)
+  if (Math.floor(hit?.toi * 10) / 10 <= 0.1) {
+    ball.current.applyImpulse({ x: 0, y: 0.06, z: 0 });
   }
 }
 
 function handleMovement(ball, delta, phase, start, keys, rapier, world) {
   const impulse = { x: 0, y: 0, z: 0 };
   const torque = { x: 0, y: 0, z: 0 };
-  const impulseStrength = 0.6 * delta;
+  const impulseStrength = 0.4 * delta;
   const torqueStrength = 0.2 * delta;
 
   if (keys.forward) {
