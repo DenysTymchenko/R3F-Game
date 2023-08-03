@@ -1,5 +1,5 @@
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { hitSound } from '../../utils/Audio.js';
+import { woodHitSound } from '../../utils/Audio.js';
 import Tree from '../Models/Tree.jsx';
 
 export default function Trees({ trees }) {
@@ -14,7 +14,10 @@ export default function Trees({ trees }) {
           type='fixed'
           colliders={false}
           restitution={0.1}
-          onCollisionEnter={() => hitSound.play()}
+          onCollisionEnter={() => {
+            woodHitSound.volume = 0.2
+            woodHitSound.play()
+          }}
         >
           <Tree />
           {/*Wood*/}

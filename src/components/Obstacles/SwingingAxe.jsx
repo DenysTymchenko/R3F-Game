@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { Euler, Quaternion } from 'three';
-import { hitSound } from '../../utils/Audio.js';
+import { slainSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Axe from '../Models/Axe.jsx';
@@ -43,7 +43,10 @@ export default function SwingingAxe({ position = [0, 0, 0] }) {
         type='kinematicPosition'
         colliders={false}
         restitution={0.2}
-        onCollisionEnter={() => hitSound.play()}
+        onCollisionEnter={() => {
+          slainSound.volume = 0.2
+          slainSound.play();
+        }}
       >
         <Axe />
         {/*Handle*/}

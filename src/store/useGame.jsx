@@ -13,19 +13,20 @@ export default create(subscribeWithSelector((set) => {
       set((state) => {
         if (state.phase === 'ready') {
           startSound.currentTime = 0;
+          startSound.volume = 0.5;
           startSound.play();
 
-          // setTimeout(() => {
-          //   bgMusic.loop = true;
-          //   bgMusic.play();
-          // }, 1000)
+          setTimeout(() => {
+            bgMusic.volume = 0.4;
+            bgMusic.loop = true;
+            bgMusic.play();
+          }, 1000)
 
           return {
             phase: 'playing',
             startTime: Date.now(),
           }
-        }
-        else {
+        } else {
           return {}
         }
       });
@@ -35,8 +36,7 @@ export default create(subscribeWithSelector((set) => {
       set((state) => {
         if (state.phase !== 'restart') {
           return { phase: 'ready' }
-        }
-        else {
+        } else {
           return {}
         }
       });
@@ -45,14 +45,14 @@ export default create(subscribeWithSelector((set) => {
     end() {
       set((state) => {
         if (state.phase === 'playing') {
+          finishSound.volume = 0.5;
           finishSound.play();
 
           return {
             phase: 'ended',
             endTime: Date.now(),
           }
-        }
-        else {
+        } else {
           return {}
         }
       });

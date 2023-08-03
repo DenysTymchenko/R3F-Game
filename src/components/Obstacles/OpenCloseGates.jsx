@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { Euler, Quaternion } from 'three';
-import { hitSound } from '../../utils/Audio.js';
+import { boxHitSound, hitSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Gate from '../Models/Gate.jsx';
@@ -95,7 +95,6 @@ function Walls() {
           colliders={false}
           restitution={0.2}
           friction={0}
-          onCollisionEnter={() => hitSound.play()}
         >
           <Wall />
           <CuboidCollider args={[2, 1, 0.15]} position={[0, 1.4, 0]} />
@@ -120,6 +119,10 @@ function Crates() {
           position={position}
           scale={0.75}
           type='fixed'
+          onCollisionEnter={() => {
+            boxHitSound.volume = 0.3;
+            boxHitSound.play();
+          }}
         >
           <Crate />
         </RigidBody>

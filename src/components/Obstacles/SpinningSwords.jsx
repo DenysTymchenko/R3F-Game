@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { Euler, Quaternion } from 'three';
-import { hitSound } from '../../utils/Audio.js';
+import { hitSound, slainSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Sword from '../Models/Sword.jsx';
@@ -67,7 +67,10 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
           position-y={0.2}
           restitution={0.2}
           friction={0}
-          onCollisionEnter={() => hitSound.play()}
+          onCollisionEnter={() => {
+            slainSound.volume = 0.2
+            slainSound.play();
+          }}
         >
           <Sword position={sword.position} />
           <CuboidCollider args={[0.1, 0.7, 0.1]} position={[0, 0.6, sword.position[2]]} />

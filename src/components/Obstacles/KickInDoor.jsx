@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { hitSound } from '../../utils/Audio.js';
+import { doorHitSound } from '../../utils/Audio.js';
 import WoodenDoor from '../Models/WoodenDoor.jsx';
 import Wall from '../Models/Wall.jsx';
 import Decorations from '../Decorations/Decorations.jsx';
@@ -22,7 +22,9 @@ export default function KickInDoor({ position = [0, 0, 0] }) {
   const [doorKicked, setDoorKicked] = useState(false);
 
   const kickDoor = () => {
-    hitSound.play();
+    doorHitSound.currentTime = 0.2;
+    doorHitSound.volume = 0.2;
+    doorHitSound.play();
     setRigidBodyType('dynamic')
     setTimeout(() => {
       setRigidBodyType('fixed')
