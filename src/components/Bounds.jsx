@@ -18,7 +18,7 @@ export default function Bounds({ length }) {
         />
         {/* End wall */}
         <CuboidCollider
-          args={[2, 1.4, 0.1]}
+          args={[2, 1, 0.1]}
           position={[0, 1, -(length * depthOfOneBlock) + 2]}
         />
         {/*Sky Box*/}

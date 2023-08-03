@@ -10,7 +10,7 @@ import UpDownHammer from '../components/Obstacles/UpDownHammer.jsx';
 import WallWithHoleObstacle from '../components/Obstacles/WallWithHoleObstacle.jsx';
 
 const levelObstacles = [
-  <KickInDoor  position={[0, 0, -4]} />,
+  <KickInDoor position={[0, 0, -4]} />,
   <TowerObstacle position={[0, 0, -8]} />,
   <LeftRightShield position={[0, 0, -12]} />,
   <OpenCloseGates position={[0, 0, -16]} />,
