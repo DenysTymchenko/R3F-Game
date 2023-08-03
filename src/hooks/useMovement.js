@@ -10,6 +10,10 @@ export default function useMovement(ball) {
   const { phase, start, end, restart } = useGame((state) => state);
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
+  if (window.innerWidth <= 768) {
+    const keys = getKeys();
+    enableAccelerometer(keys);
+  }
 
   useEffect(() => {
     useGame.subscribe(
@@ -35,14 +39,46 @@ export default function useMovement(ball) {
   });
 }
 
+function enableAccelerometer(keys) {
+  let sensor = new Accelerometer({ frequency: 60 });
+  console.log(sensor)
+  let x, y, z;
+  sensor.start();
+
+  sensor.addEventListener('reading', (e) => {
+    x = sensor.x;
+    y = sensor.y;
+
+    const rotationAngle = 2;
+    if (window.innerWidth > window.innerHeight) {
+      keys.rightward = y >= rotationAngle;
+      keys.leftward = y <= -rotationAngle;
+      keys.forward = x <= -rotationAngle;
+      keys.backward = x >= rotationAngle;
+    } else {
+      keys.rightward = x <= -rotationAngle;
+      keys.leftward = x >= rotationAngle;
+      keys.forward = y <= -rotationAngle;
+      keys.backward = y >= rotationAngle;
+    }
+
+
+  });
+  sensor.addEventListener('error', (e) => {
+    document.querySelector('body').innerText = `
+    ${e.error.name}, ${e.error.message} // Corrected the syntax here as well
+  `
+  })
+}
+
 function handleJump(ball, rapier, world) {
   const origin = ball.current.translation();
   origin.y -= 0.31;
+
   const direction = { x: 0, y: -1, z: 0 };
   const ray = new rapier.Ray(origin, direction);
   const hit = world.castRay(ray, 10, true);
-  console.log(hit?.toi)
-  console.log(Math.floor(hit?.toi * 10) / 10)
+
   if (Math.floor(hit?.toi * 10) / 10 <= 0.1) {
     ball.current.applyImpulse({ x: 0, y: 0.06, z: 0 });
   }

@@ -6,8 +6,10 @@ import Interface from './components/Interface';
 
 function Loader() {
   return (
-    <Html transform className='loader-wrapper'>
-      <span className='loader'>Load&nbsp;ng</span>
+    <Html transform>
+      <div className='loader-wrapper'>
+        <span className='loader'></span>
+      </div>
     </Html>
   )
 }
@@ -39,7 +41,7 @@ function App() {
       ]}
     >
       <Canvas shadows camera={{ near: 0.6, far: 100 }}>
-        < Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader />}>
           <Experince />
         </Suspense>
       </Canvas>
