@@ -21,9 +21,7 @@ export default function Trees({ trees }) {
         >
           <Tree />
           {/*Wood*/}
-          <CuboidCollider args={[0.3, 2, 0.2]} position={[-0.6, 0, 0]} />
-          {/*Leaves*/}
-          {/*<CuboidCollider args={[1.5, 1.6, 2.5]} position={[-0.6, 3.7, 0]} />*/}
+          <CuboidCollider args={[0.3, 1.2, 0.4]} position={[-0.6, 1, -0.2]} />
         </RigidBody>
       ))}
     </>

@@ -1,4 +1,4 @@
-import { RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { hitSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
@@ -40,10 +40,11 @@ export default function FencesObstacle({ position = [0, 0, 0] }) {
           scale={[0.75, 1, 1]}
           type='fixed'
           restitution={0.2}
-          friction={0}
+          colliders={false}
           onCollisionEnter={() => hitSound.play()}
         >
           <Fence />
+          <CuboidCollider args={[1.2, 0.5, 0.2]} position={[0, 0.7, 0]} />
         </RigidBody>
       ))}
       <Decorations
