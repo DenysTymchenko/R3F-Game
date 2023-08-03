@@ -5,6 +5,7 @@ import WallBorders from '../WallBorders.jsx';
 import Wall from '../Models/Wall.jsx';
 import TreasureChest from '../Models/TreasureChest.jsx';
 import Decorations from '../Decorations/Decorations.jsx';
+import { gold } from '../../utils/Materials.js';
 
 
 export default function BlockEnd({ position = [0, 0, 0] }) {
@@ -47,9 +48,9 @@ export default function BlockEnd({ position = [0, 0, 0] }) {
           bevelSize={0.02}
           bevelOffset={0}
           bevelSegments={5}
+          material={gold}
         >
           Finish!!!
-          <meshPhysicalMaterial color='#4B91C2' />
         </Text3D>
       </Float>
 

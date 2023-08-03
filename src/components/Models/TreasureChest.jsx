@@ -1,5 +1,5 @@
 import { useGLTF } from '@react-three/drei'
-import { metal, wood } from '../../utils/Materials.js';
+import { gold, metal, wood } from '../../utils/Materials.js';
 
 export default function TreasureChest(props) {
   const {
@@ -10,10 +10,10 @@ export default function TreasureChest(props) {
   return (
     <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0,]}>
-        <mesh geometry={nodes.Cube051.geometry} material={metal} />
-        <mesh geometry={nodes.Cube051_1.geometry} material={wood} />
-        <mesh geometry={nodes.Cube051_2.geometry} material={materials['Gold.006']} />
-        <mesh geometry={nodes.Cube051_3.geometry} material={materials['Red.039']} />
+        <mesh geometry={nodes.Cube051.geometry} material={metal} receiveShadow />
+        <mesh geometry={nodes.Cube051_1.geometry} material={wood} receiveShadow />
+        <mesh geometry={nodes.Cube051_2.geometry} material={gold} receiveShadow />
+        <mesh geometry={nodes.Cube051_3.geometry} material={materials['Red.039']} receiveShadow />
       </group>
     </group>
   );

@@ -1,6 +1,7 @@
 import { Float, Text3D } from '@react-three/drei';
 import WallBorders from '../WallBorders.jsx';
 import FloorLighter from '../FloorLighter.jsx';
+import { gold } from '../../utils/Materials.js';
 
 export default function BlockStart({ position = [0, 0, 0] }) {
   return (
@@ -16,9 +17,9 @@ export default function BlockStart({ position = [0, 0, 0] }) {
           bevelSize={0.02}
           bevelOffset={0}
           bevelSegments={5}
+          material={gold}
         >
           Castle Run
-          <meshPhysicalMaterial color='#66bfff' />
         </Text3D>
       </Float>
       <WallBorders />
