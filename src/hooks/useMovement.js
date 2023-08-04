@@ -41,8 +41,7 @@ export default function useMovement(ball) {
 
 function enableAccelerometer(keys) {
   let sensor = new Accelerometer({ frequency: 60 });
-  console.log(sensor)
-  let x, y, z;
+  let x, y;
   sensor.start();
 
   sensor.addEventListener('reading', (e) => {
