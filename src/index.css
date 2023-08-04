@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('./css/loader.css');
+@import url('./css/guide.css');
 
 * {
   padding: 0;
@@ -11,6 +12,7 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
+  font-family: 'Bebas Neue', sans-serif;
   background: ivory;
 }
 
@@ -24,7 +26,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: 'Bebas Neue', sans-serif;
   pointer-events: none;
 }
 

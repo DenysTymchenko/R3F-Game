@@ -1,0 +1,75 @@
+.guide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #292929;
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.guide h1 {
+  color: gold;
+  font-size: 4rem;
+}
+
+.guide h2 {
+  color: gold;
+  font-size: 3.5rem;
+}
+
+.guide h3 {
+  color: gold;
+  font-size: 2rem;
+}
+
+.guide p {
+  width: 50%;
+  font-size: 1.3rem;
+}
+
+.guide button {
+  width: 250px;
+  height: 50px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  background-color: gold;
+  color: #292929;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.guide button:hover {
+  background-color: goldenrod;
+}
+
+.guide .screenshots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.guide .screenshots img {
+  display: block;
+  width: 50%;
+}
+
+@media screen and (max-width: 560px) {
+  .guide p {
+    width: 75%;
+  }
+
+  .guide .screenshots img {
+    display: block;
+    width: 75%;
+  }
+}

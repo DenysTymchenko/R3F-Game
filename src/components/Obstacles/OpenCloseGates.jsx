@@ -51,7 +51,7 @@ function Gates() {
     frontGateRotation.setFromEuler(new Euler(0, frontGateSwingAngle, 0));
     frontGate.current.setNextKinematicRotation(frontGateRotation);
 
-    const backGateSwingAngle = -(Math.sin(time * speed) + 1) / 2; // from 1 to 0
+    const backGateSwingAngle = -(Math.sin(time * speed) + 1.5) / 2; // from 1 to 0
     const backGateRotation = new Quaternion();
     backGateRotation.setFromEuler(new Euler(0, backGateSwingAngle, 0));
     backGate.current.setNextKinematicRotation(backGateRotation);
