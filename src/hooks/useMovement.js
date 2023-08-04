@@ -87,7 +87,7 @@ function cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCa
   const ballOnOpenCloseGatesObstacle = ballPosition.z <= -14 && ballPosition.z > -18;
   const cameraPosition = new Vector3(
     ballPosition.x,
-    ballPosition.y + (!ballOnOpenCloseGatesObstacle ? 1.25 : 1.2),
+    ballPosition.y + (!ballOnOpenCloseGatesObstacle ? 1.25 : 0.5),
     ballPosition.z + (!ballOnOpenCloseGatesObstacle ? 2.25 : 1)
   );
   const cameraTarget = new Vector3(ballPosition.x, ballPosition.y + 0.25, ballPosition.z);
