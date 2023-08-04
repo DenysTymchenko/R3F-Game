@@ -30,9 +30,8 @@ export default function useTimer() {
 function handleUpdateBestTime(elapsedTime, state) {
   elapsedTime /= 1000;
   elapsedTime = elapsedTime.toFixed(2);
-  
+
   if(!state.bestTime || elapsedTime < state.bestTime) {
-    console.log('check');
     state.setNewBestTime(elapsedTime);
   }
 }
