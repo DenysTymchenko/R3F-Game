@@ -84,7 +84,12 @@ function handleMovement(ball, delta, phase, start, keys, rapier, world) {
 
 function cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget) {
   const ballPosition = ball.current.translation();
-  const cameraPosition = new Vector3(ballPosition.x, ballPosition.y + 1.25, ballPosition.z + 2.25);
+  const ballOnOpenCloseGatesObstacle = ballPosition.z <= -14 && ballPosition.z > -18;
+  const cameraPosition = new Vector3(
+    ballPosition.x,
+    ballPosition.y + (!ballOnOpenCloseGatesObstacle ? 1.25 : 1.2),
+    ballPosition.z + (!ballOnOpenCloseGatesObstacle ? 2.25 : 1)
+  );
   const cameraTarget = new Vector3(ballPosition.x, ballPosition.y + 0.25, ballPosition.z);
 
   smoothedCameraPosition.lerp(cameraPosition, delta * 5);

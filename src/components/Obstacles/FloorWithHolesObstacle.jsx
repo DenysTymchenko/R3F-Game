@@ -7,7 +7,7 @@ import Shovel from '../Models/Shovel.jsx';
 export default function ({ position = [0, 0, 0] }) {
   const trees = [
     {
-      position: [0.2, 0.1, 0],
+      position: [1.3, 0.1, 0],
       scale: [0.3, 0.35, 0.3],
       rotation: [0, 0, 0],
     },
@@ -16,11 +16,11 @@ export default function ({ position = [0, 0, 0] }) {
       scale: 0.25,
       rotation: [0, Math.PI / 2, 0],
     },
-    {
-      position: [1, 0.1, 1.8],
-      scale: 0.2,
-      rotation: [0, Math.PI / 2 + 5, 0],
-    },
+    // {
+    //   position: [1, 0.1, 1.8],
+    //   scale: 0.2,
+    //   rotation: [0, Math.PI / 2 + 5, 0],
+    // },
   ];
   const bushesPositions = [
     [-1.2, 0, -1.3],
