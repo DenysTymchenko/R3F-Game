@@ -40,7 +40,7 @@ function App() {
         },
       ]}
     >
-      <Canvas shadows camera={{ near: 0.6, far: 100 }}>
+      <Canvas shadows camera={{ near: 0.6, far: 40 }}>
         <Suspense fallback={<Loader />}>
           <Experince />
         </Suspense>
