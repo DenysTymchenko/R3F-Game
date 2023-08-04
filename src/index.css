@@ -87,6 +87,10 @@
 
 .controls .key.space {
   width: 144px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 .controls .key.active {

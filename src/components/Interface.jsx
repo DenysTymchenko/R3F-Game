@@ -52,8 +52,8 @@ function Controls() {
       <Joystick
         className='check'
         size={150}
-        baseColor='#0000007a'
-        stickColor='#0000003D'
+        baseColor='#82828244'
+        stickColor='#0000007a'
         move={(e) => handleMove(e)}
         stop={(e) => handleStop(e)}
       />
@@ -76,7 +76,9 @@ function Controls() {
           className={classNames('key space', controls.jump && 'active')}
           onPointerEnter={() => controls.jump = true}
           onPointerOut={() => controls.jump = false}
-        />
+        >
+          {window.innerWidth <= 768 ? 'JUMP' : ''}
+        </div>
       </div>
     </div>
   )
