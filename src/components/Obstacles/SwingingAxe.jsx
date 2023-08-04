@@ -45,7 +45,6 @@ export default function SwingingAxe({ position = [0, 0, 0] }) {
         onCollisionEnter={() => {
           slainSound.volume = 0.2
           slainSound.play();
-          restart();
         }}
       >
         <Axe />

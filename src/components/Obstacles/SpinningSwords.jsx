@@ -71,7 +71,6 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
           onCollisionEnter={() => {
             slainSound.volume = 0.2
             slainSound.play();
-            restart();
           }}
         >
           <Sword position={sword.position} />
