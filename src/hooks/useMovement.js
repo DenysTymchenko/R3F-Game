@@ -35,13 +35,13 @@ export default function useMovement(ball) {
   });
 }
 
-function handleJump(ball, rapier, world) {
+function handleJump(ball, rapier, world, delta) {
   const origin = ball.current.translation();
   origin.y -= 0.31;
 
   const direction = { x: 0, y: -1, z: 0 };
   const ray = new rapier.Ray(origin, direction);
-  const hit = world.castRay(ray, 10, true);
+  const hit = world.castRay(ray, delta * 10, true);
 
   if (Math.floor(hit?.toi * 10) / 10 <= 0.1) {
     ball.current.applyImpulse({ x: 0, y: 0.06, z: 0 });
@@ -71,7 +71,7 @@ function handleMovement(ball, delta, phase, start, keys, rapier, world) {
     torque.z += torqueStrength;
   }
   if (keys.jump) {
-    handleJump(ball, rapier, world);
+    handleJump(ball, rapier, world, delta);
   }
 
   if (phase === 'ready' && (keys.forward || keys.rightward || keys.backward || keys.leftward || keys.jump)) {
