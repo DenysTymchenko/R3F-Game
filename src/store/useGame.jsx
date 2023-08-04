@@ -16,6 +16,12 @@ export default create(subscribeWithSelector((set) => {
           startSound.volume = 0.5;
           startSound.play();
 
+          setTimeout(() => {
+            bgMusic.volume = 0.4;
+            bgMusic.loop = true;
+            bgMusic.play();
+          }, 1000)
+
           return {
             phase: 'playing',
             startTime: Date.now(),
