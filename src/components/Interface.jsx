@@ -2,6 +2,7 @@ import { useKeyboardControls } from '@react-three/drei';
 import classNames from 'classnames';
 import useGame from '../store/useGame';
 import useTimer from '../hooks/useTimer';
+import { Joystick } from 'react-joystick-component';
 
 export default function Interface() {
   const { phase } = useGame((state) => state);
@@ -33,9 +34,29 @@ function TopPart() {
 
 function Controls() {
   const controls = useKeyboardControls((state) => state);
+  const handleMove = (joystick) => {
+    controls.forward = joystick.y >= 0.4;
+    controls.rightward = joystick.x >= 0.4;
+    controls.backward = joystick.y <= -0.4;
+    controls.leftward = joystick.x <= -0.4;
+  }
+  const handleStop = (joystick) => {
+    controls.forward = false;
+    controls.rightward = false;
+    controls.backward = false;
+    controls.leftward = false;
+  }
 
   return (
-    <div className="controls">
+    <div className='controls'>
+      <Joystick
+        className='check'
+        size={150}
+        baseColor='#0000007a'
+        stickColor='#0000003D'
+        move={(e) => handleMove(e)}
+        stop={(e) => handleStop(e)}
+      />
       <div className='wasd'>
         <div className='wrapper'>
           <div
@@ -45,30 +66,11 @@ function Controls() {
           />
         </div>
         <div className='wrapper'>
-          <div
-            className={classNames('key', controls.leftward && 'active')}
-            onPointerEnter={() => controls.leftward = true}
-            onPointerOut={() => controls.leftward = false}
-          />
-          <div
-            className={classNames('key', controls.backward && 'active')}
-            onPointerEnter={() => controls.backward = true}
-            onPointerOut={() => controls.backward = false}
-          />
-          <div
-            className={classNames('key', controls.rightward && 'active')}
-            onPointerEnter={() => controls.rightward = true}
-            onPointerOut={() => controls.rightward = false}
-          />
+          <div className={classNames('key', controls.leftward && 'active')} />
+          <div className={classNames('key', controls.backward && 'active')} />
+          <div className={classNames('key', controls.rightward && 'active')} />
         </div>
       </div>
-      {/*<div className='joystick'>
-        <div
-          className='controller'
-          onTouchStart={(e) => console.log(e.clientY)}
-        >
-        </div>
-      </div>*/}
       <div className='wrapper'>
         <div
           className={classNames('key space', controls.jump && 'active')}

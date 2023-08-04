@@ -10,10 +10,6 @@ export default function useMovement(ball) {
   const { phase, start, end, restart } = useGame((state) => state);
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
-  if (window.innerWidth <= 768) {
-    const keys = getKeys();
-    enableAccelerometer(keys);
-  }
 
   useEffect(() => {
     useGame.subscribe(
@@ -37,37 +33,6 @@ export default function useMovement(ball) {
     cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget);
     checkPhaseChange(ball.current.translation(), -(levelObstacles.length * 4 + 2), end, restart);
   });
-}
-
-function enableAccelerometer(keys) {
-  let sensor = new Accelerometer({ frequency: 60 });
-  let x, y;
-  sensor.start();
-
-  sensor.addEventListener('reading', (e) => {
-    x = sensor.x;
-    y = sensor.y;
-
-    const rotationAngle = 2;
-    if (window.innerWidth > window.innerHeight) {
-      keys.rightward = y >= rotationAngle;
-      keys.leftward = y <= -rotationAngle;
-      keys.forward = x <= -rotationAngle;
-      keys.backward = x >= rotationAngle;
-    } else {
-      keys.rightward = x <= -rotationAngle;
-      keys.leftward = x >= rotationAngle;
-      keys.forward = y <= -rotationAngle;
-      keys.backward = y >= rotationAngle;
-    }
-
-
-  });
-  sensor.addEventListener('error', (e) => {
-    document.querySelector('body').innerText = `
-    ${e.error.name}, ${e.error.message} // Corrected the syntax here as well
-  `
-  })
 }
 
 function handleJump(ball, rapier, world) {

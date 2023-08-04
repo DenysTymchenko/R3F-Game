@@ -64,6 +64,11 @@
   padding: 0 5px 35px 5px;
 }
 
+/** div:first-child = Joystick */
+.controls > div:first-child {
+  display: none !important;
+}
+
 .controls .wrapper {
   display: flex;
   justify-content: center;
@@ -85,32 +90,13 @@
   background: #0000007a;
 }
 
-/*.controls .joystick {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  border-radius: 100%;
-  background-color: #0000007a;
-}
-
-.controls .joystick .controller {
-  position: absolute;
-  top: calc(50% - 20px);
-  left: calc(50% - 20px);
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  background-color: #82828244;
-  border: 2px solid white;
-  pointer-events: auto;
-}*/
-
-
 @media screen and (max-width: 768px) {
   .controls {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom: 80px;
+    pointer-events: all;
   }
 
   .controls .key {
@@ -122,8 +108,19 @@
     display: none;
   }
 
+  .controls > div:first-child {
+    display: flex !important;
+  }
+
   .controls .key.space {
     width: 200px;
     height: 65px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .controls .key.space {
+    width: 100px;
+    height: 100px;
   }
 }
