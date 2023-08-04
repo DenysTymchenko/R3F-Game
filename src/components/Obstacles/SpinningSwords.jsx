@@ -2,13 +2,15 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { Euler, Quaternion } from 'three';
-import { hitSound, slainSound } from '../../utils/Audio.js';
+import useGame from '../../store/useGame.jsx';
+import { slainSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Sword from '../Models/Sword.jsx';
 import Floor from '../Floor.jsx';
 
 export default function SpinningSwords({ position = [0, 0, 0] }) {
+  const { restart } = useGame((state) => state);
   const topSword = useRef();
   const middleSword = useRef();
   const bottomSword = useRef();
@@ -26,6 +28,18 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
       position: [0, 0, 0],
     },
   ];
+  const bushesPositions = [
+    [1.3, 0, 1.6],
+    [-1.5, 0, 1.4],
+    [-1.6, 0, -1.6],
+  ];
+  const rocksPositions = [
+    [1.9, 0, 1.8],
+    [1.1, 0, 1.5],
+    [-0.8, 0, 1.2],
+    [-1, 0, -1.2],
+    [1.4, 0, -1],
+  ];
   const speed = 2;
 
   useFrame((state) => {
@@ -42,19 +56,6 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
     bottomSword.current.setNextKinematicRotation(rotationRightToLeft);
   })
 
-  const bushesPositions = [
-    [1.3, 0, 1.6],
-    [-1.5, 0, 1.4],
-    [-1.6, 0, -1.6],
-  ];
-  const rocksPositions = [
-    [1.9, 0, 1.8],
-    [1.1, 0, 1.5],
-    [-0.8, 0, 1.2],
-    [-1, 0, -1.2],
-    [1.4, 0, -1],
-  ];
-
   return (
     <group position={position}>
       {swords.map((sword, index) => (
@@ -70,6 +71,7 @@ export default function SpinningSwords({ position = [0, 0, 0] }) {
           onCollisionEnter={() => {
             slainSound.volume = 0.2
             slainSound.play();
+            restart();
           }}
         >
           <Sword position={sword.position} />
