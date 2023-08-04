@@ -52,7 +52,7 @@ function handleMovement(ball, delta, phase, start, keys, rapier, world) {
   const impulse = { x: 0, y: 0, z: 0 };
   const torque = { x: 0, y: 0, z: 0 };
   const impulseStrength = 0.4 * delta;
-  const torqueStrength = 0.2 * delta;
+  const torqueStrength = 0.3 * delta;
 
   if (keys.forward) {
     impulse.z -= impulseStrength;
