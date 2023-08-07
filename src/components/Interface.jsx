@@ -5,13 +5,18 @@ import useTimer from '../hooks/useTimer';
 import { Joystick } from 'react-joystick-component';
 
 export default function Interface() {
-  const { phase } = useGame((state) => state);
+  const { phase, restart } = useGame((state) => state);
   const timer = useTimer();
 
   return (
     <div className='interface'>
       <TopPart />
-      {phase === 'ended' && <p className='result'>Result: {timer}</p>}
+      {phase === 'ended' && (
+        <div>
+          <p className='result'>Result: {timer}</p>
+          <p className='restart' onClick={restart}>RESTART</p>
+        </div>
+      )}
       <Controls />
     </div>
   );
