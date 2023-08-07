@@ -5,6 +5,7 @@ import { useRapier } from '@react-three/rapier';
 import { Vector3 } from 'three';
 import useGame from '../store/useGame';
 import levelObstacles from '../utils/LevelObstacles';
+import { jumpSound } from '../utils/Audio.js';
 
 export default function useMovement(ball) {
   const { phase, start, end, restart } = useGame((state) => state);
@@ -44,6 +45,8 @@ function handleJump(ball, rapier, world, delta) {
   const hit = world.castRay(ray, delta * 10, true);
 
   if (Math.floor(hit?.toi * 10) / 10 <= 0.1) {
+    jumpSound.volume = 0.3;
+    jumpSound.play();
     ball.current.applyImpulse({ x: 0, y: 0.06, z: 0 });
   }
 }

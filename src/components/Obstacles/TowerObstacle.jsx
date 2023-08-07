@@ -1,5 +1,5 @@
 import { CylinderCollider, RigidBody } from '@react-three/rapier';
-import { hitSound } from '../../utils/Audio.js';
+import { barrelHitSound, hitSound } from '../../utils/Audio.js';
 import Tower from '../Models/Tower.jsx';
 import Barrel from '../Models/Barrel.jsx';
 import Bricks from '../Models/Bricks.jsx';
@@ -51,7 +51,7 @@ function Barrels() {
           restitution={0.4}
           onCollisionEnter={() => {
             // Barrels are hits the door on respawn, so wee need to disable sound for this moment
-            if (phase !== 'ready') hitSound.play();
+            if (phase !== 'ready') barrelHitSound.play();
           }}
         >
           <Barrel />

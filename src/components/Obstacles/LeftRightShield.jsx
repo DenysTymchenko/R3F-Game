@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { hitSound } from '../../utils/Audio.js';
+import { bounceSound } from '../../utils/Audio.js';
 import Decorations from '../Decorations/Decorations.jsx';
 import WallBorders from '../WallBorders.jsx';
 import Floor from '../Floor.jsx';
@@ -38,7 +38,7 @@ export default function LeftRightShield({ position = [0, 0, 0] }) {
         type='kinematicPosition'
         colliders={false}
         restitution={1}
-        onCollisionEnter={() => hitSound.play()}
+        onCollisionEnter={() => bounceSound.play()}
       >
         <Shield />
         <CuboidCollider args={[0.3, 0.4, 0.1]} />

@@ -6,3 +6,6 @@ export const woodHitSound = new Audio('./sounds/woodHitSound.mp3');
 export const slainSound = new Audio('./sounds/slainSound.mp3');
 export const doorHitSound = new Audio('./sounds/doorHitSound.mp3');
 export const boxHitSound = new Audio('./sounds/boxHitSound.mp3');
+export const bounceSound = new Audio('./sounds/bounceSound.mp3');
+export const barrelHitSound = new Audio('./sounds/barrelHitSound.mp3');
+export const jumpSound = new Audio('./sounds/jumpSound.mp3');
