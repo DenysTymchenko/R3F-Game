@@ -14,7 +14,7 @@ export default function Interface() {
       {phase === 'ended' && (
         <div>
           <p className='result'>Result: {timer}</p>
-          <p className='restart' onClick={restart}>RESTART</p>
+          <p className='restart' onClick={restart}>Try again</p>
         </div>
       )}
       <Controls />
