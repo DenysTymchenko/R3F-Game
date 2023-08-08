@@ -8,7 +8,7 @@ import levelObstacles from '../utils/LevelObstacles';
 import { jumpSound } from '../utils/Audio.js';
 
 export default function useMovement(ball) {
-  const { phase, start, end, restart } = useGame((state) => state);
+  const { playerName, phase, start, end, restart } = useGame((state) => state);
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
 
@@ -30,7 +30,7 @@ export default function useMovement(ball) {
 
   useFrame((state, delta) => {
     const keys = getKeys();
-    handleMovement(ball, delta, phase, start, keys, rapier, world);
+    handleMovement(playerName, ball, delta, phase, start, keys, rapier, world);
     cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget);
     checkPhaseChange(ball.current.translation(), -(levelObstacles.length * 4 + 2), end, restart);
   });
@@ -51,25 +51,25 @@ function handleJump(ball, rapier, world, delta) {
   }
 }
 
-function handleMovement(ball, delta, phase, start, keys, rapier, world) {
+function handleMovement(playerName, ball, delta, phase, start, keys, rapier, world) {
   const impulse = { x: 0, y: 0, z: 0 };
   const torque = { x: 0, y: 0, z: 0 };
   const impulseStrength = 0.4 * delta;
   const torqueStrength = 0.3 * delta;
 
-  if (keys.forward) {
+  if (keys.forward && playerName) {
     impulse.z -= impulseStrength;
     torque.x -= torqueStrength;
   }
-  if (keys.rightward) {
+  if (keys.rightward && playerName) {
     impulse.x += impulseStrength;
     torque.z -= torqueStrength;
   }
-  if (keys.backward) {
+  if (keys.backward && playerName) {
     impulse.z += impulseStrength;
     torque.x += torqueStrength;
   }
-  if (keys.leftward) {
+  if (keys.leftward && playerName) {
     impulse.x -= impulseStrength;
     torque.z += torqueStrength;
   }
@@ -77,7 +77,11 @@ function handleMovement(ball, delta, phase, start, keys, rapier, world) {
     handleJump(ball, rapier, world, delta);
   }
 
-  if (phase === 'ready' && (keys.forward || keys.rightward || keys.backward || keys.leftward || keys.jump)) {
+  if (
+    phase === 'ready'
+    && (keys.forward || keys.rightward || keys.backward || keys.leftward || keys.jump)
+    && playerName
+  ) {
     start();
   }
 

@@ -1,0 +1,55 @@
+.highscores-wrapper {
+  top: 6%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.highscores {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 310px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.73);
+}
+
+.highscores .top-panel {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  color: goldenrod;
+  background-color: #0000007a;
+  padding: 10px;
+}
+
+.highscores .top-panel h2 {
+  font-size: 2rem;
+}
+
+.highscores .highscore {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+
+.highscores .highscore h3 {
+  font-size: 1.5rem;
+}
+
+
+/*Loader*/
+.highscores .loader-wrapper {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0000007a;
+}

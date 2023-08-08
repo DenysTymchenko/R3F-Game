@@ -4,7 +4,7 @@ import useMovement from '../hooks/useMovement';
 
 export default function Ball() {
   const ball = useRef();
-  useMovement(ball)
+  useMovement(ball);
 
   return (
     <RigidBody

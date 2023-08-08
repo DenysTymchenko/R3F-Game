@@ -1,43 +1,8 @@
 import { useKeyboardControls } from '@react-three/drei';
-import classNames from 'classnames';
-import useGame from '../store/useGame';
-import useTimer from '../hooks/useTimer';
 import { Joystick } from 'react-joystick-component';
+import classNames from 'classnames';
 
-export default function Interface() {
-  const { phase, restart } = useGame((state) => state);
-  const timer = useTimer();
-
-  return (
-    <div className='interface'>
-      <TopPart />
-      {phase === 'ended' && (
-        <div>
-          <p className='result'>Result: {timer}</p>
-          <p className='restart' onClick={restart}>Try again</p>
-        </div>
-      )}
-      <Controls />
-    </div>
-  );
-}
-
-function TopPart() {
-  const { restart, bestTime } = useGame((state) => state);
-  const timer = useTimer();
-
-  return (
-    <div className='top-part'>
-      <div className='time'>
-        <p className='timer'>Current: {timer}</p>
-        <p className='best-time'>Best: {bestTime ? bestTime : '-'}</p>
-      </div>
-      <p className='restart-btn' onClick={restart}>Restart</p>
-    </div>
-  )
-}
-
-function Controls() {
+export default function Controls() {
   const controls = useKeyboardControls((state) => state);
   const handleMove = (joystick) => {
     controls.forward = joystick.y >= 0.4;

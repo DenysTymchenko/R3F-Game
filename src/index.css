@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('./css/loader.css');
-@import url('./css/guide.css');
+@import url('./css/form.css');
+@import url('./css/highscores.css');
 
 * {
   padding: 0;
@@ -13,7 +14,7 @@
   width: 100vw;
   height: 100vh;
   font-family: 'Bebas Neue', sans-serif;
-  background: ivory;
+  background: #292929;
 }
 
 /*Interface*/
@@ -43,9 +44,16 @@
   padding: 10px;
 }
 
-.interface .top-part .time {
+.interface .top-part .left,
+.interface .top-part .right {
   display: flex;
   gap: 20px;
+}
+
+.highscores-btn {
+  color: goldenrod;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .interface .restart-btn {
@@ -136,6 +144,15 @@
 }
 
 @media screen and (max-width: 425px) {
+  .interface .top-part {
+    font-size: 1.2rem;
+  }
+
+  .interface .top-part .left,
+  .interface .top-part .right {
+    gap: 10px;
+  }
+
   .controls .key.space {
     width: 100px;
     height: 100px;
