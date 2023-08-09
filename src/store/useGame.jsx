@@ -27,7 +27,7 @@ export default create(subscribeWithSelector((set) => {
           startSound.play();
 
           setTimeout(() => {
-            bgMusic.volume = 0.4;
+            bgMusic.volume = 0.2;
             bgMusic.loop = true;
             bgMusic.play();
           }, 1000)

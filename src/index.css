@@ -2,6 +2,7 @@
 @import url('./css/loader.css');
 @import url('./css/form.css');
 @import url('./css/highscores.css');
+@import url('./css/menu.css');
 
 * {
   padding: 0;
@@ -47,7 +48,13 @@
 .interface .top-part .left,
 .interface .top-part .right {
   display: flex;
+  align-items: center;
   gap: 20px;
+}
+
+.top-part .right .menu-btn {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .highscores-btn {
