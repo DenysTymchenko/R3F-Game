@@ -2,7 +2,7 @@ import useGame from '../../store/useGame.jsx';
 import useTimer from '../../hooks/useTimer.js';
 import TopPart from './TopPart.jsx';
 import Controls from './Controls.jsx';
-import EnterNameForm from './EnterNameForm.jsx';
+import LogInForm from './LogInForm.jsx';
 import { useState } from 'react';
 
 export default function Interface() {
@@ -12,7 +12,7 @@ export default function Interface() {
 
   return (
     <>
-      {!nameEntered && <EnterNameForm setNameEntered={setNameEntered} />}
+      {!nameEntered && <LogInForm setNameEntered={setNameEntered} />}
       {nameEntered && (
         <div className='interface'>
           <TopPart />
