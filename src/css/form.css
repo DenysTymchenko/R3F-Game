@@ -1,5 +1,5 @@
 form {
-  width: 250px;
+  width: 300px;
   position: absolute;
   top: 50%;
   right: 50%;
@@ -9,44 +9,90 @@ form {
   color: white;
   background-color: #292929;
   padding: 10px;
+  border-radius: 10px;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
 
-.help {
+/*Help*/
+form .help {
   position: absolute;
   top: -300%;
   left: 0;
-  width: 250px;
+  width: 300px;
   font-size: 1.25rem;
   background-color: rgba(0, 0, 0, 0.67);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: .3s ease-in-out;
 }
 
-.help.triggered {
-  top: -74%;
+form .help.triggered {
+  top: -50%;
 }
 
+/*____*/
+
+/*Decorations*/
+form .decorations {
+  position: absolute;
+  top: -35%;
+  left: -2%;
+  z-index: -2;
+}
+
+form .decorations > * {
+  width: 30%;
+}
+
+form .decorations > *:nth-child(2) {
+  width: 23%;
+  margin: 0 26px;
+}
+
+form .decorations .particles {
+  width: 250%;
+}
+
+form .decorations .particles-top {
+  position: absolute;
+  left: -75%;
+  top: -190%;
+  animation: particlesAnimationUp 5s linear infinite;
+}
+
+form .decorations .particles-bottom {
+  position: absolute;
+  left: -75%;
+  top: 100%;
+  animation: particlesAnimationDown 5s linear infinite;
+}
+
+/*____*/
+
+/*Label*/
 form label {
-  margin-bottom: 20px;
+  width: 220px;
+  display: inline-block;
 }
 
 form label span {
   position: absolute;
-  top: 9%;
-  left: 87%;
+  top: 6.5%;
+  right: 4%;
   font-size: 1rem;
   border: 1px solid gold;
   border-radius: 100%;
-  padding: 1px 8px 1px 8px;
+  padding: 2px 10px 2px 10px;
   cursor: pointer;
 }
 
+/*____*/
+
+/*Input*/
 form input {
-  width: 150px;
+  width: 220px;
   margin-bottom: 20px;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.5rem;
@@ -54,8 +100,11 @@ form input {
   outline: gold;
 }
 
+/*____*/
+
+/*Button*/
 form button {
-  width: 150px;
+  width: 220px;
   height: 50px;
   padding: 10px;
   font-family: 'Bebas Neue', sans-serif;
@@ -68,3 +117,39 @@ form button {
 form button:enabled:hover {
   background-color: gold;
 }
+
+/*____*/
+
+/*Responsive*/
+@media screen and (max-width: 768px) {
+  form .decorations {
+    top: -37%;
+  }
+}
+
+/*____*/
+
+/*Animations*/
+@keyframes particlesAnimationUp {
+  0% {
+    top: -190%;
+    opacity: 0;
+  }
+  100% {
+    top: -535%;
+    opacity: 1;
+  }
+}
+
+@keyframes particlesAnimationDown {
+  0% {
+    top: 100%;
+    opacity: 0;
+  }
+  100% {
+    top: 530%;
+    opacity: 1;
+  }
+}
+
+/*____*/

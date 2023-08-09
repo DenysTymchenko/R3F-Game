@@ -26,8 +26,15 @@ export default function EnterNameForm({ setNameEntered }) {
         It will be displayed inside high scores menu, in case you'll get one, so other users can see how cool you are
         😎.
       </div>
+      <div className='decorations'>
+        <img src='./svg/tower.svg' alt='tower' />
+        <img src='./svg/crown.svg' alt='crown' />
+        <img src='./svg/tower.svg' alt='tower' />
+        <img className='particles particles-top' src='./svg/formParticles.svg' alt='tower' />
+        <img className='particles particles-bottom' src='./svg/formParticles.svg' alt='tower' />
+      </div>
       <label htmlFor='name'>
-        Enter your name
+        Enter your instagram username
         <span
           onPointerOver={() => triggerHelp(true)}
           onPointerLeave={() => triggerHelp(false)}
