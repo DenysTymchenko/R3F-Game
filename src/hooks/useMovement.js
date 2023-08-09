@@ -73,7 +73,7 @@ function handleMovement(playerName, ball, delta, phase, start, keys, rapier, wor
     impulse.x -= impulseStrength;
     torque.z += torqueStrength;
   }
-  if (keys.jump) {
+  if (keys.jump && playerName) {
     handleJump(ball, rapier, world, delta);
   }
 
