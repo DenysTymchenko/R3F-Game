@@ -15,7 +15,13 @@ function Loader() {
 }
 
 function App() {
-  const [guideRead, setGuideRead] = useState(false);
+  const currentVersion = '1.0.0';
+  const savedVersion = localStorage.getItem('websiteVersion');
+
+  if (savedVersion !== currentVersion) {
+    localStorage.clear();
+    localStorage.setItem('websiteVersion', currentVersion);
+  }
 
   return (
     <KeyboardControls
