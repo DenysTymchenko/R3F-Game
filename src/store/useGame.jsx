@@ -23,7 +23,7 @@ export default create(subscribeWithSelector((set) => {
 
     triggerUsernameChanging() {
       set((state) => {
-        return { usernameIsChanging: !state.usernameIsChanging}
+        return { usernameIsChanging: !state.usernameIsChanging }
       });
     },
 
@@ -106,17 +106,19 @@ export default create(subscribeWithSelector((set) => {
 
     async addToHighScoresList(score) {
       const highScores = await controller('GET', 'Highscores');
+      console.log(score);
+      console.log(highScores);
 
-      if (score < highScores[4]?.score) {
+      if (parseFloat(score) < parseFloat(highScores[4]?.score)) {
         highScores.push({
           'name': this.playerName,
-          'score': score,
+          'score': parseFloat(score),
         });
 
         highScores.map((highScore, index) => {
           if (highScore.name === this.playerName && index !== 5) {
-            if (score < highScore.score) {
-              highScore.score = score;
+            if (parseFloat(score) < parseFloat(highScore.score)) {
+              highScore.score = parseFloat(score);
             }
             highScores.length = 5;
           }

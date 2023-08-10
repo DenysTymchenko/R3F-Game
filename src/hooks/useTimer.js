@@ -36,24 +36,3 @@ function handleUpdateBestTime(elapsedTime, state) {
     state.setNewBestTime(elapsedTime, state);
   }
 }
-
-// async function AddToHighScoresList(score, state) {
-//   const highScores = await controller('GET', 'Highscores');
-//
-//   if (score < highScores[4]?.score) {
-//     const newScore = {
-//       'name': state.playerName,
-//       'score': score,
-//     };
-//
-//     highScores.push(newScore);
-//     highScores.sort((a, b) => a.score - b.score);
-//     highScores.length = 5;
-//
-//     highScores.forEach(async (highScore, index) => {
-//       highScore.id = index + 1;
-//       await controller('PUT', `Highscores/${index + 1}`, highScore);
-//     });
-//   }
-// }
-
