@@ -6,6 +6,11 @@
   font-size: 1.5rem;
   color: white;
   background-color: #0000007a;
+  transition: .2s ease-in;
+}
+
+.menu.hidden {
+  opacity: 0;
 }
 
 .menu .menu-item {

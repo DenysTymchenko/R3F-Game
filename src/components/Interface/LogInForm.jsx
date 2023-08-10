@@ -68,11 +68,11 @@ export default function LogInForm({ setNameEntered }) {
         Instagram username
         <span
           className='instagram-hint'
-          onMouseOver={() => {
+          onPointerOver={() => {
             setHelpText(`It will be displayed inside high scores menu, in case you'll get one, so other users can see how cool you are 😎`);
             triggerHelp(true);
           }}
-          onMouseLeave={() => triggerHelp(false)}
+          onPointerLeave={() => triggerHelp(false)}
         >
           ?
         </span>
@@ -88,11 +88,11 @@ export default function LogInForm({ setNameEntered }) {
         Password
         <span
           className='password-hint'
-          onMouseOver={() => {
+          onPointerOver={() => {
             setHelpText(`Will be used to log in from different devices and to make sure that no one is playing under your username 🔒`);
             triggerHelp(true);
           }}
-          onMouseLeave={() => triggerHelp(false)}
+          onPointerLeave={() => triggerHelp(false)}
         >
           ?
         </span>
