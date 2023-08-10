@@ -8,7 +8,7 @@ import levelObstacles from '../utils/LevelObstacles';
 import { jumpSound } from '../utils/Audio.js';
 
 export default function useMovement(ball) {
-  const { playerName, phase, start, end, restart } = useGame((state) => state);
+  const { playerName, phase, start, end, restart, usernameIsChanging } = useGame((state) => state);
   const { rapier, world } = useRapier();
   const [subscribeKeys, getKeys] = useKeyboardControls();
 
@@ -30,7 +30,7 @@ export default function useMovement(ball) {
 
   useFrame((state, delta) => {
     const keys = getKeys();
-    handleMovement(playerName, ball, delta, phase, start, keys, rapier, world);
+    handleMovement(playerName, usernameIsChanging, ball, delta, phase, start, keys, rapier, world);
     cameraFollowBall(ball, state, delta, smoothedCameraPosition, smoothedCameraTarget);
     checkPhaseChange(ball.current.translation(), -(levelObstacles.length * 4 + 2), end, restart);
   });
@@ -51,29 +51,29 @@ function handleJump(ball, rapier, world, delta) {
   }
 }
 
-function handleMovement(playerName, ball, delta, phase, start, keys, rapier, world) {
+function handleMovement(playerName, usernameIsChanging, ball, delta, phase, start, keys, rapier, world) {
   const impulse = { x: 0, y: 0, z: 0 };
   const torque = { x: 0, y: 0, z: 0 };
   const impulseStrength = 0.4 * delta;
   const torqueStrength = 0.3 * delta;
 
-  if (keys.forward && playerName) {
+  if (keys.forward && playerName && !usernameIsChanging) {
     impulse.z -= impulseStrength;
     torque.x -= torqueStrength;
   }
-  if (keys.rightward && playerName) {
+  if (keys.rightward && playerName && !usernameIsChanging) {
     impulse.x += impulseStrength;
     torque.z -= torqueStrength;
   }
-  if (keys.backward && playerName) {
+  if (keys.backward && playerName && !usernameIsChanging) {
     impulse.z += impulseStrength;
     torque.x += torqueStrength;
   }
-  if (keys.leftward && playerName) {
+  if (keys.leftward && playerName && !usernameIsChanging) {
     impulse.x -= impulseStrength;
     torque.z += torqueStrength;
   }
-  if (keys.jump && playerName) {
+  if (keys.jump && playerName && !usernameIsChanging) {
     handleJump(ball, rapier, world, delta);
   }
 
@@ -81,6 +81,7 @@ function handleMovement(playerName, ball, delta, phase, start, keys, rapier, wor
     phase === 'ready'
     && (keys.forward || keys.rightward || keys.backward || keys.leftward || keys.jump)
     && playerName
+    && !usernameIsChanging
   ) {
     start();
   }

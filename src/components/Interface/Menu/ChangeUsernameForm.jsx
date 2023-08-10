@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import { controller } from '../../utils/api.js';
-import useGame from '../../store/useGame.jsx';
+import { controller } from '../../../utils/api.js';
+import useGame from '../../../store/useGame.jsx';
 
 export default function ChangeUsernameForm({ setChangeUsername }) {
-  const { playerName, setPlayerName } = useGame((state) => state);
+  const { playerName, setPlayerName, triggerUsernameChanging } = useGame((state) => state);
   const [instagram, setInstagram] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [helpTriggered, triggerHelp] = useState(false);
@@ -44,6 +44,7 @@ export default function ChangeUsernameForm({ setChangeUsername }) {
         });
 
         setChangeUsername(false);
+        triggerUsernameChanging();
       }
     } else {
       setValidationFailed(true);
@@ -57,8 +58,15 @@ export default function ChangeUsernameForm({ setChangeUsername }) {
   };
 
   return (
-    <div className='change-username-wrapper' onClick={() => setChangeUsername(false)}>
-      <form className='change-username' onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
+    <div className='change-username-wrapper' onClick={() => {
+      setChangeUsername(false)
+      triggerUsernameChanging();
+    }}>
+      <form
+        className='change-username'
+        onSubmit={handleSubmit}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={classNames('help', helpTriggered && 'triggered')}>
           Username inside high scores table will be changed as well ✏️
         </div>

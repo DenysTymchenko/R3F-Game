@@ -1,11 +1,11 @@
-import useGame from '../../store/useGame.jsx';
-import useTimer from '../../hooks/useTimer.js';
+import useGame from '../../../store/useGame.jsx';
+import useTimer from '../../../hooks/useTimer.js';
 import { useState } from 'react';
-import Menu from './Menu.jsx';
-import HighScores from './HighScores.jsx';
+import Menu from '../Menu/Menu.jsx';
+import HighScores from '../Menu/HighScores.jsx';
 
 export default function TopPart() {
-  const { restart, bestTime } = useGame((state) => state);
+  const { restart, bestTime, phase } = useGame((state) => state);
   const [menuIsOpened, setMenuIsOpened] = useState(false);
   const timer = useTimer();
 
@@ -21,14 +21,14 @@ export default function TopPart() {
           <img
             className='menu-btn'
             onClick={() => setMenuIsOpened(!menuIsOpened)}
-            src={menuIsOpened ? './svg/menuOpened.svg' : './svg/menuClosed.svg'}
+            src={(menuIsOpened && phase !== 'ended') ? './svg/menuOpened.svg' : './svg/menuClosed.svg'}
             alt='open menu'
             width={window.innerWidth > 425 ? '32px' : '24.8px'}
             height={window.innerWidth > 425 ? '32px' : '24.8px'}
           />
         </div>
       </div>
-      {menuIsOpened && <Menu />}
+      {(menuIsOpened && phase !== 'ended') && <Menu />}
     </>
   )
 }

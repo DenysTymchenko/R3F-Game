@@ -4,6 +4,7 @@
 @import url('./css/highscores.css');
 @import url('./css/menu.css');
 @import url('./css/changeUsernameForm.css');
+@import url('./css/interfaceMiddlePart.css');
 
 * {
   padding: 0;
@@ -76,16 +77,6 @@
   color: white;
   background-color: #0000007a;
   padding: 5px;
-}
-
-.restart {
-  font-size: 2rem;
-  text-align: center;
-  color: white;
-  background-color: #0000007a;
-  padding: 5px;
-  pointer-events: auto;
-  cursor: pointer;
 }
 
 /*Controls*/

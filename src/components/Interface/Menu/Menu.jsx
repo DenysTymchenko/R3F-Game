@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import classNames from 'classnames';
-import useGame from '../../store/useGame.jsx';
+import useGame from '../../../store/useGame.jsx';
 import HighScores from './HighScores.jsx';
 import ChangeUsernameForm from './ChangeUsernameForm.jsx';
 
 export default function Menu() {
-  const { musicMuted, toggleMusic } = useGame((state) => state);
+  const { musicMuted, toggleMusic, triggerUsernameChanging } = useGame((state) => state);
   const [showHighScores, setShowHighScores] = useState(false);
   const [changeUsername, setChangeUsername] = useState(false);
 
@@ -24,7 +24,14 @@ export default function Menu() {
             height='32px'
           />
         </div>
-        <div className='menu-item' onClick={() => setChangeUsername(true)}>Change username</div>
+        <div
+          className='menu-item'
+          onClick={() => {
+            triggerUsernameChanging();
+            setChangeUsername(true);
+          }}>
+          Change username
+        </div>
       </div>
       {showHighScores && <HighScores setShowHighScores={setShowHighScores} />}
       {changeUsername && <ChangeUsernameForm setChangeUsername={setChangeUsername} />}

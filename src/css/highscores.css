@@ -78,6 +78,7 @@
 
 .highscores .highscore h3 {
   font-size: 1.5rem;
+  overflow: hidden;
 }
 
 .highscore h3 .crown {

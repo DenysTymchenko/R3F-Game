@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { controller } from '../../utils/api.js';
+import { controller } from '../../../utils/api.js';
 
 export default function HighScores({ setShowHighScores }) {
   const [highScores, setHighScores] = useState(null);

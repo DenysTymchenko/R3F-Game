@@ -1,14 +1,13 @@
 import useGame from '../../store/useGame.jsx';
-import useTimer from '../../hooks/useTimer.js';
-import TopPart from './TopPart.jsx';
-import Controls from './Controls.jsx';
+import TopPart from './Parts/TopPart.jsx';
+import Controls from './Parts/Controls.jsx';
 import LogInForm from './LogInForm.jsx';
 import { useState } from 'react';
+import MiddlePart from './Parts/MiddlePart.jsx';
 
 export default function Interface() {
-  const { playerName, phase, restart } = useGame((state) => state);
+  const { playerName, phase, usernameIsChanging } = useGame((state) => state);
   const [nameEntered, setNameEntered] = useState(playerName);
-  const timer = useTimer();
 
   return (
     <>
@@ -16,13 +15,8 @@ export default function Interface() {
       {nameEntered && (
         <div className='interface'>
           <TopPart />
-          {phase === 'ended' && (
-            <div>
-              <p className='result'>Result: {timer}</p>
-              <p className='restart' onClick={restart}>Try again</p>
-            </div>
-          )}
-          <Controls />
+          {phase === 'ended' && <MiddlePart />}
+          {phase !== 'ended' && !usernameIsChanging && <Controls />}
         </div>
       )}
     </>

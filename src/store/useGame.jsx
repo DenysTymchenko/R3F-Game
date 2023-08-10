@@ -11,12 +11,19 @@ export default create(subscribeWithSelector((set) => {
     endTime: 0,
     bestTime: localStorage.getItem('bestTime'),
     musicMuted: false,
+    usernameIsChanging: false,
 
     setPlayerName(name) {
       localStorage.setItem('playerName', name);
 
       set(() => {
         return { playerName: name }
+      });
+    },
+
+    triggerUsernameChanging() {
+      set((state) => {
+        return { usernameIsChanging: !state.usernameIsChanging}
       });
     },
 
