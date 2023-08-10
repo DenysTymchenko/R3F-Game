@@ -1,0 +1,47 @@
+.change-username-wrapper {
+  position: absolute;
+  top: 7%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+form.change-username {
+  top: 35%;
+  pointer-events: auto;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  z-index: 2;
+}
+
+form.change-username label span {
+  top: 10%;
+  right: 5%;
+}
+
+form.change-username .help.triggered {
+  top: -50%;
+}
+
+form.change-username .validation-msg {
+  bottom: -260%;
+}
+
+form.change-username .validation-msg.triggered {
+  bottom: -62%;
+}
+
+form.change-username .decorations {
+  top: -44%;
+}
+
+@media screen and (max-width: 768px) {
+  form.change-username .decorations {
+    top: -45%;
+  }
+}
