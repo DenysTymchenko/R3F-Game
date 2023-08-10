@@ -10,12 +10,28 @@ export default create(subscribeWithSelector((set) => {
     startTime: 0,
     endTime: 0,
     bestTime: localStorage.getItem('bestTime'),
+    musicMuted: false,
 
     setPlayerName(name) {
       localStorage.setItem('playerName', name);
 
       set(() => {
         return { playerName: name }
+      });
+    },
+
+    toggleMusic(value) {
+      if (value) {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+      } else {
+        bgMusic.volume = 0.2;
+        bgMusic.loop = true;
+        bgMusic.play();
+      }
+
+      set(() => {
+        return { musicMuted: value }
       });
     },
 
@@ -26,11 +42,13 @@ export default create(subscribeWithSelector((set) => {
           startSound.volume = 0.5;
           startSound.play();
 
-          setTimeout(() => {
-            bgMusic.volume = 0.2;
-            bgMusic.loop = true;
-            bgMusic.play();
-          }, 1000)
+          if (!state.musicMuted) {
+            setTimeout(() => {
+              bgMusic.volume = 0.2;
+              bgMusic.loop = true;
+              bgMusic.play();
+            }, 1000)
+          }
 
           return {
             phase: 'playing',

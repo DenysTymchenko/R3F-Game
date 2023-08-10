@@ -1,23 +1,11 @@
 import { useState } from 'react';
-import { bgMusic } from '../../utils/Audio.js';
-import HighScores from './HighScores.jsx';
 import classNames from 'classnames';
+import useGame from '../../store/useGame.jsx';
+import HighScores from './HighScores.jsx';
 
 export default function Menu() {
+  const { musicMuted, toggleMusic } = useGame((state) => state);
   const [showHighScores, setShowHighScores] = useState(false);
-  const [musicIsMuted, setMusicIsMuted] = useState(false);
-
-  const toggleMusic = () => {
-    setMusicIsMuted(!musicIsMuted);
-    if (!musicIsMuted) {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-    } else {
-      bgMusic.volume = 0.2;
-      bgMusic.loop = true;
-      bgMusic.play();
-    }
-  }
 
   return (
     <>
@@ -25,10 +13,10 @@ export default function Menu() {
         <div className='menu-item highscores-btn' onClick={() => setShowHighScores(!showHighScores)}>
           High Scores
         </div>
-        <div className='menu-item mute-music-btn' onClick={() => toggleMusic()}>
+        <div className='menu-item mute-music-btn' onClick={() => toggleMusic(!musicMuted)}>
           Music:
           <img
-            src={musicIsMuted ? './svg/musicOff.svg' : './svg/musicOn.svg'}
+            src={musicMuted ? './svg/musicOff.svg' : './svg/musicOn.svg'}
             alt='open menu'
             width='32px'
             height='32px'
