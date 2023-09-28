@@ -1,0 +1,101 @@
+.start-menu {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  align-items: center;
+  gap: 25px;
+  font-family: 'Augusta';
+  font-size: 30px;
+  color: #5F3438;
+  backdrop-filter: blur(15px);
+}
+
+.start-menu .logo {
+  width: 265px;
+}
+
+.start-menu .buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.start-menu .buttons .btn {
+  position: relative;
+  width: 250px;
+  height: 92px;
+  cursor: pointer;
+}
+
+.start-menu .buttons .btn:first-of-type {
+  width: 280px;
+  height: 103px;
+}
+
+.buttons .btn img {
+  width: 100%;
+}
+
+.buttons .btn .text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.buttons .btn:first-of-type .text {
+  font-size: 55px;
+}
+
+.start-menu .invite-btn-msg {
+  opacity: 0;
+}
+
+.start-menu input {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  font-family: 'Augusta';
+  font-size: 30px;
+  color: #5F3438;
+  background: transparent;
+  border: none;
+}
+
+.start-menu input:focus {
+  outline: none;
+}
+
+.start-menu .invite-btn-msg.show {
+  animation: 2s showMsgAndHide ease-in-out;
+}
+
+@keyframes showMsgAndHide {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

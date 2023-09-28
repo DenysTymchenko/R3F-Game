@@ -44,7 +44,7 @@ export default function ChangeUsernameForm({ setChangeUsername }) {
         });
 
         setChangeUsername(false);
-        triggerUsernameChanging();
+        // triggerUsernameChanging();
       }
     } else {
       setValidationFailed(true);
@@ -60,7 +60,7 @@ export default function ChangeUsernameForm({ setChangeUsername }) {
   return (
     <div className='change-username-wrapper' onClick={() => {
       setChangeUsername(false)
-      triggerUsernameChanging();
+      // triggerUsernameChanging();
     }}>
       <form
         className='change-username'

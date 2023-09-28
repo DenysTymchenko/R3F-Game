@@ -6,6 +6,19 @@
 @import url('./css/changeUsernameForm.css');
 @import url('./css/interfaceMiddlePart.css');
 
+@font-face {
+  font-family: 'Augusta';
+  src: url('./fonts/Augusta-Regular.eot');
+  src: url('./fonts/Augusta-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./fonts/Augusta-Regular.woff2') format('woff2'),
+  url('./fonts/Augusta-Regular.woff') format('woff'),
+  url('./fonts/Augusta-Regular.ttf') format('truetype'),
+  url('./fonts/Augusta-Regular.svg#Augusta-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   padding: 0;
   margin: 0;

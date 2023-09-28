@@ -11,7 +11,7 @@ export default create(subscribeWithSelector((set) => {
     endTime: 0,
     bestTime: localStorage.getItem('bestTime'),
     musicMuted: false,
-    usernameIsChanging: false,
+    menuIsOpened: true,
 
     setPlayerName(name) {
       localStorage.setItem('playerName', name);
@@ -21,9 +21,9 @@ export default create(subscribeWithSelector((set) => {
       });
     },
 
-    triggerUsernameChanging() {
+    toggleMenuIsOpened() {
       set((state) => {
-        return { usernameIsChanging: !state.usernameIsChanging }
+        return { menuIsOpened: !state.menuIsOpened }
       });
     },
 

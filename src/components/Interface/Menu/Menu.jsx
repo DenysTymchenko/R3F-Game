@@ -5,7 +5,7 @@ import HighScores from './HighScores.jsx';
 import ChangeUsernameForm from './ChangeUsernameForm.jsx';
 
 export default function Menu() {
-  const { musicMuted, toggleMusic, triggerUsernameChanging } = useGame((state) => state);
+  const { musicMuted, toggleMusic, toggleMenuIsOpened } = useGame((state) => state);
   const [showHighScores, setShowHighScores] = useState(false);
   const [changeUsername, setChangeUsername] = useState(false);
 
@@ -27,7 +27,7 @@ export default function Menu() {
         <div
           className='menu-item'
           onClick={() => {
-            triggerUsernameChanging();
+            // triggerUsernameChanging();
             setChangeUsername(true);
           }}>
           Change username
